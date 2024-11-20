@@ -17,9 +17,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
+        'nip',
+        'level',
+        'status',
         'password',
+        'tanggal_registrasi',
     ];
 
     /**
@@ -33,15 +37,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'tanggal_registrasi' => 'datetime',
+        'status' => 'boolean',
+        // 'password' => 'hashed',
+    ];
 }

@@ -19,7 +19,8 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{ asset('login-assets/css/style.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login #7</title>
 </head>
 
@@ -31,17 +32,6 @@
                 <div class="col-md-6">
                     <img src="{{ asset('login-assets/images/Disdik.jpeg') }}" alt="Image" class="img-fluid">
                 </div>
-                <!-- SweetAlert -->
-                @if (session('success'))
-                    <script>
-                        Swal.fire({
-                            title: 'Success!',
-                            text: '{{ session('success') }}',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        });
-                    </script>
-                @endif
                 <div class="col-md-6 contents">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
@@ -49,14 +39,38 @@
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Silahkan Login Menggunakan NIP</p>
                             </div>
-                            <form action="#" method="post">
+                            <!-- Tampilkan error jika validasi gagal -->
+                            @if ($errors->any())
+                                <script>
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        html: '<ul>' + @json($errors->all()).map(error => `<li>${error}</li>`).join('') + '</ul>',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                </script>
+                            @endif
+                            <form action="{{ route('register') }}" method="POST">
+                                @csrf
                                 <div class="form-group first">
-                                    <label for="NIP">NIP</label>
-                                    <input type="text" class="form-control" id="NIP">
+                                    <label for="nip">NIP</label>
+                                    <input type="text" class="form-control" id="nip" name="nip"
+                                        value="{{ old('nip') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        value="{{ old('nama') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value="{{ old('email') }}" required>
                                 </div>
                                 <div class="form-group last mb-4">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        value="{{ old('email') }}" required>
                                 </div>
 
                                 <div class="d-flex mb-5 align-items-center">
@@ -67,9 +81,7 @@
                                     </label>
                                 </div>
 
-                                <input type="submit" value="Log In" class="btn btn-block btn-primary">
-                                <input type="submit" value="Register" class="btn btn-block btn-secondary">
-
+                                <button type="submit" class="btn btn-block btn-primary">Register</button>
                             </form>
                         </div>
                     </div>
