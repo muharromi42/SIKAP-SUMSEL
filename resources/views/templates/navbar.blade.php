@@ -57,7 +57,7 @@
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex">
                             <div class="user-name text-end me-3">
-                                <h6 class="mb-0 text-gray-600">John Ducky</h6>
+                                <h6 class="mb-0 text-gray-600">{{ Auth::user()->nama }}</h6>
                                 <p class="mb-0 text-sm text-gray-600">Administrator</p>
                             </div>
                             <div class="user-img d-flex align-items-center">
@@ -81,8 +81,14 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-box-arrow-left me-2"></i>
-                                Logout</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

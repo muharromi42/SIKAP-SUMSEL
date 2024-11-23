@@ -49,14 +49,16 @@
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Silahkan Login Menggunakan NIP</p>
                             </div>
-                            <form action="#" method="post">
+                            <form action="{{ route('login.process') }}" method="post">
+                                @csrf
                                 <div class="form-group first">
-                                    <label for="NIP">NIP</label>
-                                    <input type="text" class="form-control" id="NIP">
+                                    <label for="nip">NIP</label>
+                                    <input type="text" class="form-control" id="nip" name="nip"
+                                        value="{{ old('nip') }}" required>
                                 </div>
                                 <div class="form-group last mb-4">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
 
                                 <div class="d-flex mb-5 align-items-center">
@@ -67,7 +69,7 @@
                                     </label>
                                 </div>
 
-                                <input type="submit" value="Log In" class="btn btn-block btn-primary">
+                                <button type="submit" class="btn btn-block btn-primary">Login</button>
                                 <input type="submit" value="Register" class="btn btn-block btn-secondary">
 
                             </form>
