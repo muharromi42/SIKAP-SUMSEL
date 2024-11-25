@@ -44,7 +44,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'tanggal_registrasi' => 'datetime',
-        'status' => 'boolean',
         // 'password' => 'hashed',
     ];
 }

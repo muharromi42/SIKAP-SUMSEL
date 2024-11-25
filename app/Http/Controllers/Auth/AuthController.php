@@ -57,7 +57,7 @@ class AuthController extends Controller
         ]);
         // Tambahkan nilai default secara manual
         $validatedData['level'] = 'user';
-        $validatedData['status'] = true; // true untuk aktif
+        $validatedData['status'] = 'aktif'; // true untuk aktif
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);

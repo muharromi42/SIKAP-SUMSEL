@@ -72,6 +72,12 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="status" class="form-label">status</label>
+                                    <input type="text" name="status" id="status" class="form-control"
+                                        placeholder="Your status" value="{{ old('status', $user->status) }}" readonly>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="profile_picture" class="form-label">Profile Picture</label>
                                     <input type="file" name="profile_picture" id="profile_picture" class="form-control">
                                 </div>

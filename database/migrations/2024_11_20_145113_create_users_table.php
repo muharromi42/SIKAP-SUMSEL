@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('nip')->unique(); // NIP
             $table->string('level'); // Level (e.g., 'admin', 'user', etc.)
-            $table->boolean('status')->default(true); // Status aktif/non-aktif
+            $table->string('status')->default('aktif'); // Status aktif/non-aktif
             $table->string('password');
             $table->string('profile_picture')->nullable();
             $table->timestamp('tanggal_registrasi')->useCurrent(); // Default waktu saat registrasi
