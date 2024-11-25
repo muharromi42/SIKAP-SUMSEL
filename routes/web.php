@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OtherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,3 +26,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/{id}/update', [AccountController::class, 'update'])->name('account.update');
+
+Route::get('/faq', [OtherController::class, 'faq'])->name('faq');

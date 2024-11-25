@@ -62,7 +62,9 @@
                             </div>
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
-                                    <img src="template/dist/assets/compiled/jpg/1.jpg">
+                                    <img
+                                        src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : '/template/dist/assets/compiled/jpg/2.jpg' }}">
+
                                 </div>
                             </div>
                         </div>
