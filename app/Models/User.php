@@ -23,6 +23,7 @@ class User extends Authenticatable
         'level',
         'status',
         'password',
+        'profile_picture',
         'tanggal_registrasi',
     ];
 
