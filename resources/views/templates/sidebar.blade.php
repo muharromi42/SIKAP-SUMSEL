@@ -59,6 +59,14 @@
                     <ul class="submenu ">
 
                         <li class="submenu-item  ">
+                            <a href="{{ route('users.index') }}" class="submenu-link">
+                                <i class="bi bi-person-add"></i>
+                                <span>Manajemen User</span>
+                            </a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
                             <a href="{{ route('faq') }}" class="submenu-link">
                                 <i class="bi bi-person-add"></i>
                                 <span>Faq</span>

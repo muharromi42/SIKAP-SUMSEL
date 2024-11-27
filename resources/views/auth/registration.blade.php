@@ -70,7 +70,7 @@
                                 <div class="form-group last mb-4">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        value="{{ old('email') }}" required>
+                                        value="{{ old('password') }}" required>
                                 </div>
 
                                 <div class="d-flex mb-5 align-items-center">
