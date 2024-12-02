@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('file_tpp'); // Path file TPP
             $table->string('file_dhbpo'); // Path file DHBPO
             $table->string('file_ekinerja'); // Path file E-Kinerja
+            $table->string('status')->default('pending'); // Status validasi ('pending', 'approved', 'rejected')
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

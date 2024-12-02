@@ -18,15 +18,17 @@
 
 
     {{-- datatable jquery --}}
-    <link rel="stylesheet" crossorigin href="template/dist/assets/compiled/css/table-datatable-jquery.css">
-    <link rel="stylesheet" href="template/dist/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" crossorigin
+        href="{{ asset('template/dist/assets/compiled/css/table-datatable-jquery.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('template/dist/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     {{--  --}}
-    <link rel="stylesheet" crossorigin href="template/dist/assets/compiled/css/app.css">
-    <link rel="stylesheet" crossorigin href="template/dist/assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" crossorigin href="{{ asset('template/dist/assets/compiled/css/app.css') }}">
+    <link rel="stylesheet" crossorigin href="{{ asset('template/dist/assets/compiled/css/app-dark.css') }}">
 </head>
 
 <body>
-    <script src="template/dist/assets/static/js/initTheme.js"></script>
+    <script src="{{ asset('template/dist/assets/static/js/initTheme.js') }}"></script>
     <div id="app">
         @include('templates.sidebar')
         <div id="main" class='layout-navbar navbar-fixed'>
@@ -47,18 +49,19 @@
             </footer>
         </div>
     </div>
-    <script src="template/dist/assets/static/js/components/dark.js"></script>
-    <script src="template/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="{{ asset('template/dist/assets/static/js/components/dark.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
-    <script src="template/dist/assets/compiled/js/app.js"></script>
+    <script src="{{ asset('template/dist/assets/compiled/js/app.js') }}"></script>
 
 
 
     {{-- datatable jquery --}}
-    <script src="template/dist/assets/extensions/jquery/jquery.min.js"></script>
-    <script src="template/dist/assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="template/dist/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-    <script src="template/dist/assets/static/js/pages/datatables.js"></script>
+    <script src="{{ asset('template/dist/assets/extensions/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/extensions/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}">
+    </script>
+    <script src="{{ asset('template/dist/assets/static/js/pages/datatables.js') }}"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

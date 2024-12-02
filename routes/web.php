@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardController;
@@ -39,3 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/uploads/create', [BerkasController::class, 'store'])->name('uploads.store');
     Route::get('/uploads', [BerkasController::class, 'create'])->name('uploads.create');
 });
+
+// Route::middleware(['auth', 'isAdmin'])->group(function () {
+Route::get('/admin/uploads', [AdminController::class, 'index'])->name('admin.uploads.index');
+Route::get('/admin/uploads/{id}', [AdminController::class, 'show'])->name('admin.uploads.show');
+Route::post('/admin/uploads/{id}/validate', [AdminController::class, 'validateUpload'])->name('admin.uploads.validate');
+
+// });

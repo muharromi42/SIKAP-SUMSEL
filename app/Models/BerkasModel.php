@@ -25,6 +25,7 @@ class BerkasModel extends Model
         'file_tpp',
         'file_dhbpo',
         'file_ekinerja',
+        'status',
     ];
 
     public function user()
