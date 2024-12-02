@@ -72,7 +72,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-block btn-primary">Login</button>
-                                <input type="submit" value="Register" class="btn btn-block btn-secondary">
+                                <a href="{{ route('registration') }}" class="btn btn-block btn-secondary">Register</a>
 
                             </form>
                         </div>

@@ -99,4 +99,16 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        </script>
+    @endpush
 @endsection

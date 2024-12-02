@@ -52,8 +52,15 @@
 
                 <li class="sidebar-item  {{ Request::routeIs('uploads.create') ? 'active' : '' }} ">
                     <a href="{{ route('uploads.create') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="bi bi-file-earmark-arrow-up"></i>
                         <span>Upload Berkas</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item  {{ Request::routeIs('admin.uploads.index') ? 'active' : '' }} ">
+                    <a href="{{ route('admin.uploads.index') }}" class='sidebar-link'>
+                        <i class="bi bi-folder-check"></i>
+                        <span>Validasi Berkas</span>
                     </a>
                 </li>
 

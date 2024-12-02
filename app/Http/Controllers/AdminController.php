@@ -12,23 +12,39 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query_data = new BerkasModel();
-            $data = $query_data::all();
-            return DataTables::of($data)
+            $query_data = BerkasModel::all(); // Tidak perlu 'new' dan ':all()'
+            return DataTables::of($query_data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
+                    // Tombol Lihat
                     $showButton = '<a href="' . route('admin.uploads.show', $row->id) . '" class="btn btn-primary">Lihat</a>';
+
+                    // Tombol Delete
                     $deleteButton = '
-                <form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">
-                    ' . csrf_field() . method_field('DELETE') . '
-                    <button type="submit" class="btn btn-danger delete-button">Delete</button>
-                </form>';
+                    <form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">
+                        ' . csrf_field() . method_field('DELETE') . '
+                        <button type="submit" class="btn btn-danger delete-button">Delete</button>
+                    </form>';
+
+                    // Gabungkan tombol Lihat dan Delete
                     return $showButton . ' ' . $deleteButton;
                 })
-                ->rawColumns(['action'])->make(true);
+                ->addColumn('status', function ($row) {
+                    // Menambahkan card untuk status
+                    if ($row->status == 'approved') {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-success">Disetujui</span></div></div>';
+                    } elseif ($row->status == 'rejected') {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-danger">Ditolak</span></div></div>';
+                    } else {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
+                    }
+                })
+                ->rawColumns(['action', 'status']) // Pastikan kolom status dan action menerima HTML
+                ->make(true);
         }
         return view('admin.uploads.index');
     }
+
 
     public function show($id)
     {

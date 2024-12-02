@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    Daftar Berkas Unggahan
+                    Validasi Berkas
                 </h5>
             </div>
             <div class="card-body">
@@ -32,6 +32,7 @@
                                 <th>Tahun</th>
                                 <th>Bulan</th>
                                 <th>Kabupaten</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -79,6 +80,12 @@
                         {
                             data: 'kabupaten',
                             name: 'kabupaten',
+                        },
+                        {
+                            data: 'status',
+                            name: 'status',
+                            orderable: false,
+                            searchable: false
                         },
                         {
                             data: 'action',
