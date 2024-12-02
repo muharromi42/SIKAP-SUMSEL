@@ -45,5 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/uploads', [AdminController::class, 'index'])->name('admin.uploads.index');
 Route::get('/admin/uploads/{id}', [AdminController::class, 'show'])->name('admin.uploads.show');
 Route::post('/admin/uploads/{id}/validate', [AdminController::class, 'validateUpload'])->name('admin.uploads.validate');
+Route::delete('/admin/uploads/{id}', [AdminController::class, 'destroy'])->name('admin.uploads.destroy');
+
 
 // });
