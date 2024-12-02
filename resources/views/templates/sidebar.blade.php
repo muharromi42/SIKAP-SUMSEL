@@ -50,6 +50,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item  {{ Request::routeIs('uploads.create') ? 'active' : '' }} ">
+                    <a href="{{ route('uploads.create') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Upload Berkas</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-person-circle"></i>

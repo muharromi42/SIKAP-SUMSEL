@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\UserController;
@@ -32,3 +33,9 @@ Route::get('/faq', [OtherController::class, 'faq'])->name('faq');
 
 
 Route::resource('users', UserController::class);
+
+
+Route::middleware('auth')->group(function () {
+    Route::post('/uploads/create', [BerkasController::class, 'store'])->name('uploads.store');
+    Route::get('/uploads', [BerkasController::class, 'create'])->name('uploads.create');
+});
