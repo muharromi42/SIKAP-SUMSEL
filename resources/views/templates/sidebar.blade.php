@@ -50,12 +50,14 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  {{ Request::routeIs('uploads.create') ? 'active' : '' }} ">
-                    <a href="{{ route('uploads.create') }}" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-arrow-up"></i>
-                        <span>Upload Berkas</span>
-                    </a>
-                </li>
+                @if (Auth::check() && Auth::user()->level === 'user')
+                    <li class="sidebar-item  {{ Request::routeIs('uploads.create') ? 'active' : '' }} ">
+                        <a href="{{ route('uploads.create') }}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-arrow-up"></i>
+                            <span>Upload Berkas</span>
+                        </a>
+                    </li>
+                @endif
 
                 @if (Auth::check() && Auth::user()->level === 'user')
                     <li class="sidebar-item  {{ Request::routeIs('berkas.index') ? 'active' : '' }} ">

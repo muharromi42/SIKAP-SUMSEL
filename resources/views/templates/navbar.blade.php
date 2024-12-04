@@ -15,44 +15,18 @@
                         <a class="nav-link active dropdown-toggle text-gray-600" href="#"
                             data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <i class='bi bi-bell bi-sub fs-4'></i>
-                            <span class="badge badge-notification bg-danger">7</span>
+                            <span class="badge badge-notification bg-danger" id="notification-badge">0</span>
                         </a>
                         <ul class="dropdown-menu dropdown-center  dropdown-menu-sm-end notification-dropdown"
-                            aria-labelledby="dropdownMenuButton">
+                            aria-labelledby="dropdownMenuButton" id="notification-list">
                             <li class="dropdown-header">
                                 <h6>Notifications</h6>
                             </li>
-                            <li class="dropdown-item notification-item">
-                                <a class="d-flex align-items-center" href="#">
-                                    <div class="notification-icon bg-primary">
-                                        <i class="bi bi-cart-check"></i>
-                                    </div>
-                                    <div class="notification-text ms-4">
-                                        <p class="notification-title font-bold">Successfully check out</p>
-                                        <p class="notification-subtitle font-thin text-sm">Order ID #256
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-item notification-item">
-                                <a class="d-flex align-items-center" href="#">
-                                    <div class="notification-icon bg-success">
-                                        <i class="bi bi-file-earmark-check"></i>
-                                    </div>
-                                    <div class="notification-text ms-4">
-                                        <p class="notification-title font-bold">Homework submitted</p>
-                                        <p class="notification-subtitle font-thin text-sm">Algebra math
-                                            homework</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <p class="text-center py-2 mb-0"><a href="#">See all
-                                        notification</a></p>
-                            </li>
+                            <!-- Notifications will be dynamically inserted here -->
                         </ul>
                     </li>
                 </ul>
+
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex">
@@ -93,3 +67,46 @@
         </div>
     </nav>
 </header>
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ambil data notifikasi dari backend
+            fetch('/api/notifications') // Pastikan route ini sesuai dengan route yang mengembalikan data notifikasi
+                .then(response => response.json())
+                .then(data => {
+                    const notificationList = document.getElementById('notification-list');
+                    const notificationBadge = document.getElementById('notification-badge');
+
+                    if (data.length > 0) {
+                        notificationBadge.textContent = data.length; // Update jumlah notifikasi
+                        data.forEach(notification => {
+                            const li = document.createElement('li');
+                            li.classList.add('dropdown-item', 'notification-item');
+
+                            const link = document.createElement('a');
+                            link.classList.add('d-flex', 'align-items-center');
+                            link.href = notification.url;
+
+                            const icon = document.createElement('div');
+                            icon.classList.add('notification-icon', 'bg-warning');
+                            icon.innerHTML = '<i class="bi bi-bell"></i>';
+
+                            const text = document.createElement('div');
+                            text.classList.add('notification-text', 'ms-4');
+                            text.innerHTML = `
+                        <p class="notification-title font-bold">${notification.title}</p>
+                        <p class="notification-subtitle font-thin text-sm">${notification.subtitle}</p>
+                    `;
+
+                            link.appendChild(icon);
+                            link.appendChild(text);
+                            li.appendChild(link);
+                            notificationList.appendChild(li);
+                        });
+                    } else {
+                        notificationBadge.style.display = 'none'; // Sembunyikan badge jika tidak ada notifikasi
+                    }
+                });
+        });
+    </script>
+@endpush

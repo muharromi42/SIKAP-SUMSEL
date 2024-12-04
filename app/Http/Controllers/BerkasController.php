@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BerkasModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,24 @@ class BerkasController extends Controller
                 ->make(true);
         }
         return view('berkas.index');
+    }
+
+    public function getNotifications(Request $request)
+    {
+        $today = Carbon::today();
+        $berkasNearDeadline = BerkasModel::where('deadline', '>=', $today)
+            ->where('deadline', '<=', $today->addDays(7))
+            ->get();
+
+        $notifications = $berkasNearDeadline->map(function ($berkas) {
+            return [
+                'title' => 'Deadline Penguploadan Berkas: ' . $berkas->nama_instansi,
+                'subtitle' => 'Deadline: ' . $berkas->deadline->format('d M Y'),
+                'url' => route('berkas.show', $berkas->id),
+            ];
+        });
+
+        return response()->json($notifications);
     }
 
     public function create()

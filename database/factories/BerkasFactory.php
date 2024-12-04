@@ -6,30 +6,63 @@ use App\Models\BerkasModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Berkas>
- */
 class BerkasFactory extends Factory
 {
     protected $model = BerkasModel::class;
 
+    /**
+     * Definisikan model untuk pembuatan data palsu.
+     *
+     * @return array
+     */
     public function definition()
     {
+        // Mengambil user secara acak dari tabel 'users'
+        $user = User::inRandomOrder()->first();
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember',
+        ];
         return [
-            'user_id' => User::inRandomOrder()->first()->id, // Mengambil user acak
-            'nama_user' => $this->faker->name, // Nama acak
-            'nip' => $this->faker->unique()->numerify('##########'), // NIP acak
-            'tahun' => $this->faker->year, // Tahun acak
-            'bulan' => $this->faker->monthName, // Bulan acak
-            'kabupaten' => $this->faker->city, // Nama kabupaten acak
-            'npsn_sekolah' => $this->faker->unique()->numerify('NPSN####'), // NPSN acak
-            'nama_instansi' => $this->faker->company, // Nama instansi acak
-            'file_sptjm' => 'file_sptjm_' . $this->faker->uuid . '.pdf', // Nama file SPTJM acak
-            'file_skp' => 'file_skp_' . $this->faker->uuid . '.pdf', // Nama file SKP acak
-            'file_tpp' => 'file_tpp_' . $this->faker->uuid . '.pdf', // Nama file TPP acak
-            'file_dhbpo' => 'file_dhbpo_' . $this->faker->uuid . '.pdf', // Nama file DHBPO acak
-            'file_ekinerja' => 'file_ekinerja_' . $this->faker->uuid . '.pdf', // Nama file E-Kinerja acak
-            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']), // Status acak
+            'user_id' => $user->id, // ID dari user yang dipilih secara acak
+            'nama_user' => $user->nama, // Menggunakan nama user dari tabel users
+            'nip' => $user->nip, // Menggunakan NIP user dari tabel users
+            'tahun' => $this->faker->numberBetween(2020, 2024), // Tahun dibatasi dari 2020 sampai 2024
+            'bulan' => $bulanIndonesia[$this->faker->monthName], // Mengonversi nama bulan ke bahasa Indonesia
+            'kabupaten' => $this->faker->randomElement([
+                'Banyuasin',
+                'Empat Lawang',
+                'Lahat',
+                'Lubuk Linggau',
+                'Muara Enim',
+                'Musi Banyuasin',
+                'Musi Rawas',
+                'Ogan Ilir',
+                'Ogan Komering Ilir',
+                'Ogan Komering Ulu',
+                'Palembang',
+                'Pagar Alam',
+                'Prabumulih',
+            ]), // Menggunakan daftar kabupaten yang telah ditentukan
+            'npsn_sekolah' => $this->faker->optional()->numerify('###'), // NPSN sekolah bisa kosong
+            'nama_instansi' => $this->faker->company,
+            'file_sptjm' => 'uploads/default.pdf',
+            'file_skp' => 'uploads/default.pdf',
+            'file_tpp' => 'uploads/default.pdf',
+            'file_dhbpo' => 'uploads/default.pdf',
+            'file_ekinerja' => 'uploads/default.pdf',
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
+            'deadline' => $this->faker->optional()->date(), // Deadline bisa kosong
         ];
     }
 }

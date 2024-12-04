@@ -47,3 +47,6 @@ Route::delete('/admin/uploads/{id}', [AdminController::class, 'destroy'])->name(
 // });
 
 Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas.index');
+
+
+Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
