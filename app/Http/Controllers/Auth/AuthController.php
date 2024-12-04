@@ -41,6 +41,23 @@ class AuthController extends Controller
 
     public function dashboard(Request $request)
     {
+        // Mengambil jumlah berkas berdasarkan status
+        $berkasCount = DB::table('berkas')
+            ->select(DB::raw('status, count(*) as count'))
+            ->groupBy('status')
+            ->get();
+        // Persiapkan data untuk chart
+        $dataBerkas = [
+            'pending' => 0,
+            'approved' => 0,
+            'rejected' => 0,
+        ];
+
+        // Isi data berdasarkan hasil query
+        foreach ($berkasCount as $item) {
+            $dataBerkas[$item->status] = $item->count;
+        }
+
         $selectedYear = $request->get('year', date('Y')); // Default ke tahun saat ini
         $chartData = DB::table('berkas')
             ->select(DB::raw("kabupaten, bulan, COUNT(*) as total"))
@@ -73,6 +90,7 @@ class AuthController extends Controller
             'berkasCount' => BerkasModel::count(),
             'approvedCount' => BerkasModel::where('status', 'approved')->count(),
             'rejectedCount' => BerkasModel::where('status', 'rejected')->count(),
+            'dataBerkas' => $dataBerkas
         ]);
     }
 

@@ -123,10 +123,10 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h4>Visitors Profile</h4>
+                        <h4>Status berkas</h4>
                     </div>
                     <div class="card-body">
-                        <div id="chart-visitors-profile"></div>
+                        <div id="statusChart"></div>
                     </div>
                 </div>
             </div>
@@ -173,6 +173,46 @@
 
             let chart = new ApexCharts(document.querySelector("#berkasChart"), options);
             chart.render();
+
+            var optionsDonut = {
+                chart: {
+                    type: 'donut',
+                    height: 500, // Menentukan tinggi chart
+                    width: '100%',
+                },
+                series: [{{ $dataBerkas['pending'] }}, {{ $dataBerkas['approved'] }},
+                    {{ $dataBerkas['rejected'] }}
+                ], // Data berdasarkan status
+                labels: ['Pending', 'Approved', 'Rejected'], // Label untuk donut chart
+                colors: ['#FFB800', '#28C76F', '#F1416C'], // Warna masing-masing status
+                responsive: [{
+                    breakpoint: 720, // Mengatur ukuran chart pada layar 720px
+                    options: {
+                        chart: {
+                            width: '100%', // Agar chart mengisi lebar kontainer pada layar 720px
+                            height: 400, // Mengatur tinggi chart pada layar lebih kecil
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }, {
+                    breakpoint: 480, // Untuk layar lebih kecil dari 480px
+                    options: {
+                        chart: {
+                            width: '100%',
+                            height: 350, // Menyesuaikan tinggi untuk layar ponsel kecil
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+
+            };
+
+            var chartDonut = new ApexCharts(document.querySelector("#statusChart"), optionsDonut);
+            chartDonut.render();
         </script>
     @endpush
 @endsection
