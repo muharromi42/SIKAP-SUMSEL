@@ -57,19 +57,23 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  {{ Request::routeIs('berkas.index') ? 'active' : '' }} ">
-                    <a href="{{ route('berkas.index') }}" class='sidebar-link'>
-                        <i class="bi bi-folder2-open"></i>
-                        <span>Berkas Saya</span>
-                    </a>
-                </li>
+                @if (Auth::check() && Auth::user()->level === 'user')
+                    <li class="sidebar-item  {{ Request::routeIs('berkas.index') ? 'active' : '' }} ">
+                        <a href="{{ route('berkas.index') }}" class='sidebar-link'>
+                            <i class="bi bi-folder2-open"></i>
+                            <span>Berkas Saya</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="sidebar-item  {{ Request::routeIs('admin.uploads.index') ? 'active' : '' }} ">
-                    <a href="{{ route('admin.uploads.index') }}" class='sidebar-link'>
-                        <i class="bi bi-folder-check"></i>
-                        <span>Validasi Berkas</span>
-                    </a>
-                </li>
+                @if (Auth::check() && Auth::user()->level === 'admin')
+                    <li class="sidebar-item  {{ Request::routeIs('admin.uploads.index') ? 'active' : '' }} ">
+                        <a href="{{ route('admin.uploads.index') }}" class='sidebar-link'>
+                            <i class="bi bi-folder-check"></i>
+                            <span>Validasi Berkas</span>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -79,13 +83,15 @@
 
                     <ul class="submenu ">
 
-                        <li class="submenu-item  ">
-                            <a href="{{ route('users.index') }}" class="submenu-link">
-                                <i class="bi bi-person-add"></i>
-                                <span>Manajemen User</span>
-                            </a>
+                        @if (Auth::check() && Auth::user()->level === 'admin')
+                            <li class="submenu-item  ">
+                                <a href="{{ route('users.index') }}" class="submenu-link">
+                                    <i class="bi bi-person-add"></i>
+                                    <span>Manajemen User</span>
+                                </a>
 
-                        </li>
+                            </li>
+                        @endif
 
                         <li class="submenu-item  ">
                             <a href="{{ route('faq') }}" class="submenu-link">
