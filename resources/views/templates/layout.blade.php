@@ -11,7 +11,8 @@
 
     <link rel="icon" type="image/png" href="{{ asset('img/logo_sumsel.webp') }}" sizes="64x64">
 
-
+    {{-- iconly --}}
+    <link rel="stylesheet" crossorigin href="{{ asset('template/dist/assets/compiled/css/iconly.css') }}">
     {{-- datatable jquery --}}
     <link rel="stylesheet" crossorigin
         href="{{ asset('template/dist/assets/compiled/css/table-datatable-jquery.css') }}">
@@ -58,6 +59,9 @@
     </script>
     <script src="{{ asset('template/dist/assets/static/js/pages/datatables.js') }}"></script>
 
+    <!-- Need: Apexcharts -->
+    <script src="{{ asset('template/dist/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/static/js/pages/dashboard.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @stack('scripts')

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\BerkasModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -37,9 +39,41 @@ class AuthController extends Controller
         ])->withInput($request->only('nip'));
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        return view('dashboard.index');
+        $selectedYear = $request->get('year', date('Y')); // Default ke tahun saat ini
+        $chartData = DB::table('berkas')
+            ->select(DB::raw("kabupaten, bulan, COUNT(*) as total"))
+            ->where('tahun', $selectedYear) // Gunakan kolom 'tahun'
+            ->groupBy('kabupaten', 'bulan')
+            ->orderBy('bulan')
+            ->get();
+
+        $kabupatenList = $chartData->pluck('kabupaten')->unique();
+        $bulanList = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+        // Format data untuk chart
+        $formattedData = [];
+        foreach ($kabupatenList as $kabupaten) {
+            $data = [];
+            foreach ($bulanList as $bulan) {
+                $data[] = $chartData->where('kabupaten', $kabupaten)->where('bulan', $bulan)->sum('total') ?? 0;
+            }
+            $formattedData[] = [
+                'name' => $kabupaten,
+                'data' => $data
+            ];
+        }
+
+        return view('dashboard.index', [
+            'categories' => $bulanList,
+            'series' => $formattedData,
+            'selectedYear' => $selectedYear,
+            'userCount' => User::count(),
+            'berkasCount' => BerkasModel::count(),
+            'approvedCount' => BerkasModel::where('status', 'approved')->count(),
+            'rejectedCount' => BerkasModel::where('status', 'rejected')->count(),
+        ]);
     }
 
     public function registration()

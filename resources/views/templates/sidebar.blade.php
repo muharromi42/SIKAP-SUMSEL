@@ -59,7 +59,7 @@
 
                 <li class="sidebar-item  {{ Request::routeIs('berkas.index') ? 'active' : '' }} ">
                     <a href="{{ route('berkas.index') }}" class='sidebar-link'>
-                        <i class="bi bi-folder-check"></i>
+                        <i class="bi bi-folder2-open"></i>
                         <span>Berkas Saya</span>
                     </a>
                 </li>
