@@ -57,6 +57,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item  {{ Request::routeIs('berkas.index') ? 'active' : '' }} ">
+                    <a href="{{ route('berkas.index') }}" class='sidebar-link'>
+                        <i class="bi bi-folder-check"></i>
+                        <span>Berkas Saya</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item  {{ Request::routeIs('admin.uploads.index') ? 'active' : '' }} ">
                     <a href="{{ route('admin.uploads.index') }}" class='sidebar-link'>
                         <i class="bi bi-folder-check"></i>

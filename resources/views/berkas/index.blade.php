@@ -33,7 +33,6 @@
                                 <th>Bulan</th>
                                 <th>Kabupaten</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +55,6 @@
                     scrollX: true,
                     ajax: "{{ route('berkas.index') }}",
                     columns: [{
-
                             data: 'DT_RowIndex',
                             name: 'DT_RowIndex',
                             searchable: false

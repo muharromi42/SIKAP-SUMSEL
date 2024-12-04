@@ -14,7 +14,7 @@ class BerkasController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query_data = BerkasModel::all(); // Tidak perlu 'new' dan ':all()'
+            $query_data = BerkasModel::where('user_id', auth()->id())->get(); // Hanya ambil data yang terkait dengan user yang login
             return DataTables::of($query_data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
