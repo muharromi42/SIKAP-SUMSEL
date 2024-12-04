@@ -31,8 +31,9 @@ class AuthController extends Controller
         }
 
         // Jika login gagal
-        return back()->withErrors([
-            'loginError' => 'NIP atau password salah.',
+        return back()->with([
+            'status' => 'error',
+            'message' => 'NIP atau password salah.'
         ])->withInput($request->only('nip'));
     }
 

@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="{{ asset('login-assets/css/style.css') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <title>Login #7</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo_sumsel.webp') }}" sizes="64x64">
+    <title>SIKAP | SUMSEL</title>
 </head>
 
 <body>
@@ -41,6 +42,15 @@
                             text: '{{ session('success') }}',
                             icon: 'success',
                             confirmButtonText: 'OK'
+                        });
+                    </script>
+                @endif
+                @if (session('status') == 'error')
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: '{{ session('message') }}',
                         });
                     </script>
                 @endif

@@ -9,9 +9,7 @@ use App\Http\Controllers\OtherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 
 
 
@@ -46,6 +44,6 @@ Route::get('/admin/uploads', [AdminController::class, 'index'])->name('admin.upl
 Route::get('/admin/uploads/{id}', [AdminController::class, 'show'])->name('admin.uploads.show');
 Route::post('/admin/uploads/{id}/validate', [AdminController::class, 'validateUpload'])->name('admin.uploads.validate');
 Route::delete('/admin/uploads/{id}', [AdminController::class, 'destroy'])->name('admin.uploads.destroy');
-
-
 // });
+
+Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas.index');

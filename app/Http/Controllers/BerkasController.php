@@ -6,9 +6,33 @@ use App\Models\BerkasModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class BerkasController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::all(); // Tidak perlu 'new' dan ':all()'
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    // Menambahkan card untuk status
+                    if ($row->status == 'approved') {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-success">Disetujui</span></div></div>';
+                    } elseif ($row->status == 'rejected') {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-danger">Ditolak</span></div></div>';
+                    } else {
+                        return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
+                    }
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+        }
+        return view('berkas.index');
+    }
+
     public function create()
     {
         $kabupatenOptions = [

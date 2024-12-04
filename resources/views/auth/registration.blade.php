@@ -23,7 +23,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Login #7</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo_sumsel.webp') }}" sizes="64x64">
+    <title>SIKAP | SUMSEL</title>
 </head>
 
 <body>
