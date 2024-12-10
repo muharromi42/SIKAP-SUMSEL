@@ -26,6 +26,9 @@ class AccountController extends Controller
             'nama' => 'required|string|max:255',  // Ubah 'name' menjadi 'nama'
             'email' => 'required|email|unique:users,email,' . $user->id,
             'nip' => 'nullable|string|max:255', // Ubah nip menjadi sesuai yang ada di form
+            'jabatan' => 'nullable|string|max:255',
+            'notel' => 'nullable|string|max:255',
+            'birthday' => 'nullable|date|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -42,6 +45,7 @@ class AccountController extends Controller
         }
 
         $user->update($validatedData);
+
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }

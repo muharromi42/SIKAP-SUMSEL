@@ -30,6 +30,8 @@ class UserFactory extends Factory
             'level' => $this->faker->randomElement(['admin', 'user']),
             'status' => $this->faker->randomElement(['aktif', 'non-aktif']),
             'password' => bcrypt('password'), // password default
+            'notel' => $this->faker->randomNumber(),
+            'birthday' => $this->faker->date(),
             'tanggal_registrasi' => $this->faker->dateTimeThisDecade(),
         ];
     }

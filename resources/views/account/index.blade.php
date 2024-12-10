@@ -72,6 +72,24 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="notel" class="form-label">notel</label>
+                                    <input type="text" name="notel" id="notel" class="form-control"
+                                        placeholder="Your notel" value="{{ old('notel', $user->notel) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jabatan" class="form-label">jabatan</label>
+                                    <input type="text" name="jabatan" id="jabatan" class="form-control"
+                                        placeholder="Your jabatan" value="{{ old('jabatan', $user->jabatan) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="birthday" class="form-label">birthday</label>
+                                    <input type="date" name="birthday" id="birthday" class="form-control"
+                                        placeholder="Your birthday" value="{{ old('birthday', $user->birthday) }}">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="status" class="form-label">status</label>
                                     <input type="text" name="status" id="status" class="form-control"
                                         placeholder="Your status" value="{{ old('status', $user->status) }}" readonly>
@@ -79,7 +97,8 @@
 
                                 <div class="form-group">
                                     <label for="profile_picture" class="form-label">Profile Picture</label>
-                                    <input type="file" name="profile_picture" id="profile_picture" class="form-control">
+                                    <input type="file" name="profile_picture" id="profile_picture"
+                                        class="form-control">
                                 </div>
 
                                 <div class="form-group">

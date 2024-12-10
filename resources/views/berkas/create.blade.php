@@ -45,7 +45,7 @@
 
                             <!-- Kabupaten -->
                             <div class="form-group mb-3">
-                                <label for="kabupaten" class="form-label">Kabupaten</label>
+                                <label for="kabupaten" class="form-label">Kabupaten / Kota</label>
                                 <select name="kabupaten" id="kabupaten" class="form-control" required>
                                     @foreach ($kabupatenOptions as $kabupaten)
                                         <option value="{{ $kabupaten }}">{{ $kabupaten }}</option>
