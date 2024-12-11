@@ -68,12 +68,42 @@
                     </li>
                 @endif
 
+
                 @if (Auth::check() && Auth::user()->level === 'admin')
-                    <li class="sidebar-item  {{ Request::routeIs('admin.uploads.index') ? 'active' : '' }} ">
-                        <a href="{{ route('admin.uploads.index') }}" class='sidebar-link'>
-                            <i class="bi bi-folder-check"></i>
+                    <li
+                        class="sidebar-item  has-sub {{ Request::routeIs('admin.uploads.pending') || Request::routeIs('admin.uploads.approved') || Request::routeIs('admin.uploads.rejected') ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-folder"></i>
                             <span>Validasi Berkas</span>
                         </a>
+
+                        <ul class="submenu ">
+
+                            <li class="submenu-item {{ Request::routeIs('admin.uploads.pending') ? 'active' : '' }}  ">
+                                <a href="{{ route('admin.uploads.pending') }}" class="submenu-link">
+                                    <i class="bi bi-folder"></i>
+                                    <span>Berkas Pending</span>
+                                </a>
+
+                            </li>
+
+                            <li class="submenu-item {{ Request::routeIs('admin.uploads.approved') ? 'active' : '' }} ">
+                                <a href="{{ route('admin.uploads.approved') }}" class="submenu-link">
+                                    <i class="bi bi-folder-check"></i>
+                                    <span>Berkas Diterima</span>
+                                </a>
+
+                            </li>
+
+                            <li class="submenu-item {{ Request::routeIs('admin.uploads.rejected') ? 'active' : '' }} ">
+                                <a href="{{ route('admin.uploads.rejected') }}" class="submenu-link">
+                                    <i class="bi bi-folder-x"></i>
+                                    <span>Berkas Ditolak</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
                     </li>
                 @endif
 

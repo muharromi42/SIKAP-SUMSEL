@@ -11,38 +11,70 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        return view('admin.uploads.index');
+    }
+
+    public function approved(Request $request)
+    {
         if ($request->ajax()) {
-            $query_data = BerkasModel::all(); // Tidak perlu 'new' dan ':all()'
+            $query_data = BerkasModel::where('status', 'approved')->get();
             return DataTables::of($query_data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    // Tombol Lihat
                     $showButton = '<a href="' . route('admin.uploads.show', $row->id) . '" class="btn btn-primary">Lihat</a>';
-
-                    // Tombol Delete
-                    $deleteButton = '
-                    <form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">
-                        ' . csrf_field() . method_field('DELETE') . '
-                        <button type="submit" class="btn btn-danger delete-button">Delete</button>
-                    </form>';
-
-                    // Gabungkan tombol Lihat dan Delete
+                    $deleteButton = '<form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger delete-button">Delete</button></form>';
                     return $showButton . ' ' . $deleteButton;
                 })
                 ->addColumn('status', function ($row) {
-                    // Menambahkan card untuk status
-                    if ($row->status == 'approved') {
-                        return '<div class="card"><div class="card-body"><span class="badge bg-success">Disetujui</span></div></div>';
-                    } elseif ($row->status == 'rejected') {
-                        return '<div class="card"><div class="card-body"><span class="badge bg-danger">Ditolak</span></div></div>';
-                    } else {
-                        return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
-                    }
+                    return '<div class="card"><div class="card-body"><span class="badge bg-success">Disetujui</span></div></div>';
                 })
-                ->rawColumns(['action', 'status']) // Pastikan kolom status dan action menerima HTML
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
-        return view('admin.uploads.index');
+
+        return view('admin.uploads.approved');
+    }
+
+    public function rejected(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::where('status', 'rejected')->get();
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $showButton = '<a href="' . route('admin.uploads.show', $row->id) . '" class="btn btn-primary">Lihat</a>';
+                    $deleteButton = '<form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger delete-button">Delete</button></form>';
+                    return $showButton . ' ' . $deleteButton;
+                })
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-danger">Ditolak</span></div></div>';
+                })
+                ->rawColumns(['action', 'status'])
+                ->make(true);
+        }
+
+        return view('admin.uploads.rejected');
+    }
+
+    public function pending(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::where('status', 'pending')->get();
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $showButton = '<a href="' . route('admin.uploads.show', $row->id) . '" class="btn btn-primary">Lihat</a>';
+                    $deleteButton = '<form action="' . route('admin.uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger delete-button">Delete</button></form>';
+                    return $showButton . ' ' . $deleteButton;
+                })
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
+                })
+                ->rawColumns(['action', 'status'])
+                ->make(true);
+        }
+
+        return view('admin.uploads.pending');
     }
 
 
@@ -93,6 +125,6 @@ class AdminController extends Controller
         $upload->delete();
 
         // Redirect dengan pesan sukses
-        return redirect()->route('admin.uploads.index')->with('success', 'Data dan berkas berhasil dihapus.');
+        return redirect()->back()->with('success', 'Data dan berkas berhasil dihapus.');
     }
 }

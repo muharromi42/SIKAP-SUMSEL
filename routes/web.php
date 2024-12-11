@@ -39,12 +39,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/uploads', [BerkasController::class, 'create'])->name('uploads.create');
 });
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('uploads', [AdminController::class, 'index'])->name('uploads.index');
+    Route::get('uploads/approved', [AdminController::class, 'approved'])->name('uploads.approved');
+    Route::get('uploads/rejected', [AdminController::class, 'rejected'])->name('uploads.rejected');
+    Route::get('uploads/pending', [AdminController::class, 'pending'])->name('uploads.pending');
+});
+
 // Route::middleware(['auth', 'isAdmin'])->group(function () {
-Route::get('/admin/uploads', [AdminController::class, 'index'])->name('admin.uploads.index');
+// Route::get('/admin/uploads', [AdminController::class, 'index'])->name('admin.uploads.index');
 Route::get('/admin/uploads/{id}', [AdminController::class, 'show'])->name('admin.uploads.show');
 Route::post('/admin/uploads/{id}/validate', [AdminController::class, 'validateUpload'])->name('admin.uploads.validate');
 Route::delete('/admin/uploads/{id}', [AdminController::class, 'destroy'])->name('admin.uploads.destroy');
 // });
+
 
 Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas.index');
 

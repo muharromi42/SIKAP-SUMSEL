@@ -6,9 +6,7 @@
 
         {{-- Tombol Kembali --}}
         <div class="mb-4">
-            <a href="{{ route('admin.uploads.index') }}" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Kembali
-            </a>
+            <button onclick="history.go(-2)" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Kembali</button>
         </div>
 
         <div class="row mb-4">
@@ -85,3 +83,18 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
+@endpush
