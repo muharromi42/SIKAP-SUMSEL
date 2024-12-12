@@ -34,6 +34,63 @@ class BerkasController extends Controller
         return view('berkas.index');
     }
 
+    public function pending(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::where([
+                ['user_id', '=', auth()->id()],
+                ['status', '=', 'pending']
+            ])->get();
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+        }
+
+        return view('berkas.pending');
+    }
+
+    public function approved(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::where([
+                ['user_id', '=', auth()->id()],
+                ['status', '=', 'approved']
+            ])->get();
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-success">Disetujui</span></div></div>';
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+        }
+
+        return view('berkas.approved');
+    }
+
+    public function rejected(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_data = BerkasModel::where([
+                ['user_id', '=', auth()->id()],
+                ['status', '=', 'rejected']
+            ])->get();
+            return DataTables::of($query_data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-danger">Ditolak</span></div></div>';
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+        }
+
+        return view('berkas.rejected');
+    }
+
     public function getNotifications(Request $request)
     {
         $today = Carbon::today();

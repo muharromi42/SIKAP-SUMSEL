@@ -55,6 +55,9 @@ Route::delete('/admin/uploads/{id}', [AdminController::class, 'destroy'])->name(
 
 
 Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas.index');
+Route::get('/berkas/pending', [BerkasController::class, 'pending'])->name('berkas.pending');
+Route::get('/berkas/approved', [BerkasController::class, 'approved'])->name('berkas.approved');
+Route::get('/berkas/rejected', [BerkasController::class, 'rejected'])->name('berkas.rejected');
 
 
 Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
