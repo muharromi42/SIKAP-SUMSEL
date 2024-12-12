@@ -171,7 +171,7 @@
                         </li>
 
                         <li class="submenu-item  ">
-                            <a href="" class="submenu-link">
+                            <a href="{{ route('contact') }}" class="submenu-link">
                                 <i class="bi bi-person-gear"></i>
                                 <span>Contact</span>
                             </a>

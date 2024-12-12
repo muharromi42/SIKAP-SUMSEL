@@ -29,6 +29,7 @@ Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/{id}/update', [AccountController::class, 'update'])->name('account.update');
 
 Route::get('/faq', [OtherController::class, 'faq'])->name('faq');
+Route::get('/contact', [OtherController::class, 'contact'])->name('contact');
 
 
 Route::resource('users', UserController::class);

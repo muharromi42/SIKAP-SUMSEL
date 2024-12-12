@@ -10,4 +10,9 @@ class OtherController extends Controller
     {
         return view('other.faq');
     }
+
+    public function contact()
+    {
+        return view('other.contact');
+    }
 }

@@ -10,91 +10,96 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Accordion</h3>
-                    <p class="text-subtitle text-muted">A pretty helpful component to show organized information
-                        to the user.</p>
+                    <h3>FAQ (Frequently Asked Questions)</h3>
+                    <p class="text-subtitle text-muted">Pertanyaan yang sering diajukan oleh pengguna.</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Accordion</li>
+                            <li class="breadcrumb-item active" aria-current="page">FAQ</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
+
         <section class="section">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Default</h4>
+                            <h4>Frequently Asked Questions</h4>
                         </div>
                         <div class="card-body">
-                            <p>Click the accordions below to expand/collapse the accordion content.</p>
-                            <div class="accordion" id="accordionExample">
+                            <div class="accordion" id="faqAccordion">
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
+                                    <h2 class="accordion-header" id="faqHeadingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Accordion Item #1
+                                            data-bs-target="#faqCollapseOne" aria-expanded="true"
+                                            aria-controls="faqCollapseOne">
+                                            Apa itu platform ini?
                                         </button>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div id="faqCollapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            <strong>This is the first item's accordion body.</strong> It is
-                                            shown by default, until the collapse plugin adds the appropriate
-                                            classes that we use to style each element. These classes control the
-                                            overall appearance, as well as the showing and hiding via CSS
-                                            transitions. You can modify any of this with custom CSS or
-                                            overriding our default variables. It's also worth noting that just
-                                            about any HTML can go within the <code>.accordion-body</code>,
-                                            though the transition does limit overflow.
+                                            Platform ini adalah aplikasi berbasis web yang memfasilitasi pengelolaan data,
+                                            pengunggahan berkas, monitoring, dan pelaporan secara efisien.
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
+                                    <h2 class="accordion-header" id="faqHeadingTwo">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Accordion Item #2
+                                            data-bs-target="#faqCollapseTwo" aria-expanded="false"
+                                            aria-controls="faqCollapseTwo">
+                                            Bagaimana cara mendaftar?
                                         </button>
                                     </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                        data-bs-parent="#accordionExample">
+                                    <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            <strong>This is the second item's accordion body.</strong> It is
-                                            hidden by default, until the collapse plugin adds the appropriate
-                                            classes that we use to style each element. These classes control the
-                                            overall appearance, as well as the showing and hiding via CSS
-                                            transitions. You can modify any of this with custom CSS or
-                                            overriding our default variables. It's also worth noting that just
-                                            about any HTML can go within the <code>.accordion-body</code>,
-                                            though the transition does limit overflow.
+                                            Anda dapat mendaftar dengan mengklik tombol <strong>Sign Up</strong> di bawah
+                                            tombol login,
+                                            lalu mengisi formulir pendaftaran dengan data yang benar.
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
+                                    <h2 class="accordion-header" id="faqHeadingThree">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            Accordion Item #3
+                                            data-bs-target="#faqCollapseThree" aria-expanded="false"
+                                            aria-controls="faqCollapseThree">
+                                            Bagaimana cara mengetahui deadline pengunggahan berkas?
                                         </button>
                                     </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div id="faqCollapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            <strong>This is the third item's accordion body.</strong> It is
-                                            hidden by default, until the collapse plugin adds the appropriate
-                                            classes that we use to style each element. These classes control the
-                                            overall appearance, as well as the showing and hiding via CSS
-                                            transitions. You can modify any of this with custom CSS or
-                                            overriding our default variables. It's also worth noting that just
-                                            about any HTML can go within the <code>.accordion-body</code>,
-                                            though the transition does limit overflow.
+                                            Anda dapat melihat tanggal deadline di halaman <strong>Dashboard</strong> pada
+                                            bagian
+                                            <em>Timeline</em> atau melalui notifikasi yang kami kirimkan.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeadingFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faqCollapseFour" aria-expanded="false"
+                                            aria-controls="faqCollapseFour">
+                                            Apa format berkas yang diperbolehkan untuk diunggah?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseFour" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Format yang diperbolehkan adalah <strong>PDF (Portable Document
+                                                Format),</strong>
+                                            dan <strong>gambar (.jpg, .png)</strong>. Ukuran maksimal berkas adalah 10 MB.
                                         </div>
                                     </div>
                                 </div>
@@ -102,72 +107,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Flush</h4>
-                        </div>
-                        <div class="card-body">
-                            <p>Add <code>.accordion-flush</code> to remove the default background-color, some
-                                borders, and some rounded corners to render accordions edge-to-edge with their
-                                parent container.</p>
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                            aria-controls="flush-collapseOne">
-                                            Accordion Item #1
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion,
-                                            which is intended to demonstrate the <code>.accordion-flush</code>
-                                            class. This is the first item's accordion body.</div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                            aria-controls="flush-collapseTwo">
-                                            Accordion Item #2
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion,
-                                            which is intended to demonstrate the <code>.accordion-flush</code>
-                                            class. This is the second item's accordion body. Let's imagine this
-                                            being filled with some actual content.</div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                            aria-expanded="false" aria-controls="flush-collapseThree">
-                                            Accordion Item #3
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion,
-                                            which is intended to demonstrate the <code>.accordion-flush</code>
-                                            class. This is the third item's accordion body. Nothing more
-                                            exciting happening here in terms of content, but just filling up the
-                                            space to make it look, at least at first glance, a bit more
-                                            representative of how this would look in a real-world application.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
     </div>
