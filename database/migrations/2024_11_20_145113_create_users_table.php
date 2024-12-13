@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('notel')->nullable();
             $table->date('birthday')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->date('deadline')->nullable();
             $table->timestamp('tanggal_registrasi')->useCurrent(); // Default waktu saat registrasi
             $table->timestamps(); // Untuk created_at dan updated_at
         });

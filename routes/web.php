@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\UserDeadlineController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BerkasController;
@@ -45,6 +46,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('uploads/approved', [AdminController::class, 'approved'])->name('uploads.approved');
     Route::get('uploads/rejected', [AdminController::class, 'rejected'])->name('uploads.rejected');
     Route::get('uploads/pending', [AdminController::class, 'pending'])->name('uploads.pending');
+    Route::get('deadlines', [UserDeadlineController::class, 'index'])->name('deadlines.index');
+    Route::post('users/{user}/deadline', [UserDeadlineController::class, 'setDeadline'])->name('users.setDeadline');
+    Route::post('users/global-deadline', [UserDeadlineController::class, 'setGlobalDeadline'])->name('users.setGlobalDeadline');
 });
 
 // Route::middleware(['auth', 'isAdmin'])->group(function () {

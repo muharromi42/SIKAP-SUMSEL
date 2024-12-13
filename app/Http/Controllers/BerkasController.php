@@ -91,23 +91,6 @@ class BerkasController extends Controller
         return view('berkas.rejected');
     }
 
-    public function getNotifications(Request $request)
-    {
-        $today = Carbon::today();
-        $berkasNearDeadline = BerkasModel::where('deadline', '>=', $today)
-            ->where('deadline', '<=', $today->addDays(7))
-            ->get();
-
-        $notifications = $berkasNearDeadline->map(function ($berkas) {
-            return [
-                'title' => 'Deadline Penguploadan Berkas: ' . $berkas->nama_instansi,
-                'subtitle' => 'Deadline: ' . $berkas->deadline->format('d M Y'),
-                'url' => route('berkas.show', $berkas->id),
-            ];
-        });
-
-        return response()->json($notifications);
-    }
 
     public function create()
     {

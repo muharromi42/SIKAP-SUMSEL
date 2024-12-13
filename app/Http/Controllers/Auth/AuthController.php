@@ -41,27 +41,42 @@ class AuthController extends Controller
 
     public function dashboard(Request $request)
     {
-        // Mengambil jumlah berkas berdasarkan status
+        $user = Auth::user();
+
+        // Cek apakah user sudah mengunggah berkas
+        $hasUploaded = BerkasModel::where('user_id', $user->id)->exists();
+
+
+        // Ambil deadline user
+        $deadline = $user->deadline ? \Carbon\Carbon::parse($user->deadline) : null;
+
+
+        // Logika Notifikasi
+        $notification = null;
+        if (!$hasUploaded && $deadline && now()->diffInDays($deadline, false) <= 7) {
+            $notification = "Anda belum mengunggah berkas apa pun. Deadline: {$deadline->format('d-m-Y')}. Segera unggah berkas Anda!";
+        } else {
+        }
+
+        // Statistik
         $berkasCount = DB::table('berkas')
             ->select(DB::raw('status, count(*) as count'))
             ->groupBy('status')
             ->get();
-        // Persiapkan data untuk chart
+
         $dataBerkas = [
             'pending' => 0,
             'approved' => 0,
             'rejected' => 0,
         ];
-
-        // Isi data berdasarkan hasil query
         foreach ($berkasCount as $item) {
             $dataBerkas[$item->status] = $item->count;
         }
 
-        $selectedYear = $request->get('year', date('Y')); // Default ke tahun saat ini
+        $selectedYear = $request->get('year', date('Y'));
         $chartData = DB::table('berkas')
             ->select(DB::raw("kabupaten, bulan, COUNT(*) as total"))
-            ->where('tahun', $selectedYear) // Gunakan kolom 'tahun'
+            ->where('tahun', $selectedYear)
             ->groupBy('kabupaten', 'bulan')
             ->orderBy('bulan')
             ->get();
@@ -69,7 +84,6 @@ class AuthController extends Controller
         $kabupatenList = $chartData->pluck('kabupaten')->unique();
         $bulanList = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-        // Format data untuk chart
         $formattedData = [];
         foreach ($kabupatenList as $kabupaten) {
             $data = [];
@@ -78,7 +92,7 @@ class AuthController extends Controller
             }
             $formattedData[] = [
                 'name' => $kabupaten,
-                'data' => $data
+                'data' => $data,
             ];
         }
 
@@ -90,9 +104,11 @@ class AuthController extends Controller
             'berkasCount' => BerkasModel::count(),
             'approvedCount' => BerkasModel::where('status', 'approved')->count(),
             'rejectedCount' => BerkasModel::where('status', 'rejected')->count(),
-            'dataBerkas' => $dataBerkas
+            'dataBerkas' => $dataBerkas,
+            'notification' => $notification,
         ]);
     }
+
 
     public function registration()
     {

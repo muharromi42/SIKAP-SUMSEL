@@ -15,17 +15,36 @@
                         <a class="nav-link active dropdown-toggle text-gray-600" href="#"
                             data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <i class='bi bi-bell bi-sub fs-4'></i>
-                            <span class="badge badge-notification bg-danger" id="notification-badge">0</span>
+                            <!-- Badge jumlah notifikasi -->
+                            <span class="badge badge-notification bg-danger" id="notification-badge">
+                                {{ $notification ? 1 : 0 }}
+                            </span>
                         </a>
-                        <ul class="dropdown-menu dropdown-center  dropdown-menu-sm-end notification-dropdown"
+                        <ul class="dropdown-menu dropdown-center dropdown-menu-sm-end notification-dropdown"
                             aria-labelledby="dropdownMenuButton" id="notification-list">
                             <li class="dropdown-header">
                                 <h6>Notifications</h6>
                             </li>
-                            <!-- Notifications will be dynamically inserted here -->
+                            <!-- Notifikasi dinamis -->
+                            @if ($notification)
+                                <li class="dropdown-item">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-exclamation-circle-fill text-danger me-2 fs-5"></i>
+                                        <div>
+                                            <p class="mb-0">{{ $notification }}</p>
+                                            <small class="text-muted">Segera unggah berkas sebelum terlambat.</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="dropdown-item text-center">
+                                    <small class="text-muted">Tidak ada notifikasi saat ini.</small>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 </ul>
+
 
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
