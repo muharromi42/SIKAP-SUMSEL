@@ -61,4 +61,4 @@ Route::get('/berkas/approved', [BerkasController::class, 'approved'])->name('ber
 Route::get('/berkas/rejected', [BerkasController::class, 'rejected'])->name('berkas.rejected');
 
 
-Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
+// Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
