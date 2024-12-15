@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,3 +67,5 @@ Route::get('/berkas/rejected', [BerkasController::class, 'rejected'])->name('ber
 
 
 // Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
+
+Route::get('/admin/uploads/approved/pdf', [AdminController::class, 'approvedPdf'])->name('admin.uploads.approved.pdf');

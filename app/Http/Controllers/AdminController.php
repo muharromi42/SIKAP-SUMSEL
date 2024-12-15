@@ -6,6 +6,7 @@ use App\Models\BerkasModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\Facade\Pdf; // Tambahkan alias ini
 
 class AdminController extends Controller
 {
@@ -126,5 +127,18 @@ class AdminController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Data dan berkas berhasil dihapus.');
+    }
+
+    public function approvedPdf()
+    {
+        // Ambil data yang disetujui
+        $query_data = BerkasModel::where('status', 'approved')->get();
+
+        // Buat view untuk PDF
+        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data'));
+
+        // Return PDF ke browser atau download
+        return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
+        // return $pdf->download('approved-data.pdf'); // Untuk langsung diunduh
     }
 }

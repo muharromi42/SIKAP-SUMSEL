@@ -5,6 +5,8 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Berkas Disetujui</h5>
+                <a href="{{ route('admin.uploads.approved.pdf') }}" class="btn btn-success">Cetak PDF</a>
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
