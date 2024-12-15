@@ -160,6 +160,14 @@
                                 </a>
 
                             </li>
+
+                            <li class="submenu-item  ">
+                                <a href="{{ route('admin.deadlines.index') }}" class="submenu-link">
+                                    <i class="bi bi-person-add"></i>
+                                    <span>Manajemen Deadline</span>
+                                </a>
+
+                            </li>
                         @endif
 
                         <li class="submenu-item  ">

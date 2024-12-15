@@ -48,15 +48,15 @@ class AuthController extends Controller
 
 
         // Ambil deadline user
-        $deadline = $user->deadline ? \Carbon\Carbon::parse($user->deadline) : null;
+        // $deadline = $user->deadline ? \Carbon\Carbon::parse($user->deadline) : null;
 
 
-        // Logika Notifikasi
-        $notification = null;
-        if (!$hasUploaded && $deadline && now()->diffInDays($deadline, false) <= 7) {
-            $notification = "Anda belum mengunggah berkas apa pun. Deadline: {$deadline->format('d-m-Y')}. Segera unggah berkas Anda!";
-        } else {
-        }
+        // // Logika Notifikasi
+        // $notification = null;
+        // if (!$hasUploaded && $deadline && now()->diffInDays($deadline, false) <= 7) {
+        //     $notification = "Anda belum mengunggah berkas apa pun. Deadline: {$deadline->format('d-m-Y')}. Segera unggah berkas Anda!";
+        // } else {
+        // }
 
         // Statistik
         $berkasCount = DB::table('berkas')
@@ -105,7 +105,7 @@ class AuthController extends Controller
             'approvedCount' => BerkasModel::where('status', 'approved')->count(),
             'rejectedCount' => BerkasModel::where('status', 'rejected')->count(),
             'dataBerkas' => $dataBerkas,
-            'notification' => $notification,
+            // 'notification' => $notification,
         ]);
     }
 
