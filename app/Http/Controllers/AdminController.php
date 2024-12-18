@@ -92,10 +92,12 @@ class AdminController extends Controller
         // Validasi input status
         $request->validate([
             'status' => 'required|in:approved,rejected',
+            'note' => 'nullable|string',
         ]);
 
         // Update status
         $upload->status = $request->status;
+        $upload->note = $request->note;
         $upload->save();
 
         return redirect()->back()->with('success', 'Berkas telah divalidasi.');

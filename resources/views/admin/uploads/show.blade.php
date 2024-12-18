@@ -36,6 +36,7 @@
                                 <span class="badge bg-warning">Menunggu</span>
                             @endif
                         </p>
+                        <p><strong>Notes: {{ $upload->note }}</strong></p>
                     </div>
                 </div>
             </div>
@@ -78,6 +79,10 @@
                     <option value="approved" {{ $upload->status == 'approved' ? 'selected' : '' }}>Setujui</option>
                     <option value="rejected" {{ $upload->status == 'rejected' ? 'selected' : '' }}>Tolak</option>
                 </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="notes">Catatan (jika berkas ditolak)</label>
+                <input type="text" class="form-control" id="note" name="note" placeholder="{{ $upload->note }}">
             </div>
             <button type="submit" class="btn btn-primary">Validasi</button>
         </form>

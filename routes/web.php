@@ -40,6 +40,9 @@ Route::resource('users', UserController::class);
 Route::middleware('auth')->group(function () {
     Route::post('/uploads/create', [BerkasController::class, 'store'])->name('uploads.store');
     Route::get('/uploads', [BerkasController::class, 'create'])->name('uploads.create');
+    Route::get('/uploads/{id}/edit', [BerkasController::class, 'edit'])->name('uploads.edit');
+    Route::put('/uploads/{id}', [BerkasController::class, 'update'])->name('uploads.update');
+    Route::delete('/uploads/{id}', [BerkasController::class, 'destroy'])->name('uploads.destroy');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {

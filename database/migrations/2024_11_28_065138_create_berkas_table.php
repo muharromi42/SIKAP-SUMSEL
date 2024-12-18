@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('file_ekinerja'); // Path file E-Kinerja
             $table->string('status')->default('pending'); // Status validasi ('pending', 'approved', 'rejected')
             $table->date('deadline')->nullable(); // Menambahkan kolom deadline
+            $table->string('note')->nullable(); // Menambahkan kolom note
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
