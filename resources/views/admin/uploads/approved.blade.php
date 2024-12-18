@@ -5,9 +5,41 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Berkas Disetujui</h5>
-                <a href="{{ route('admin.uploads.approved.pdf') }}" class="btn btn-success">Cetak PDF</a>
 
+                <!-- Form Filter -->
+                <form method="GET" action="{{ route('admin.uploads.approved.pdf') }}">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- Pilih Bulan -->
+                        <select name="bulan" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih Bulan --</option>
+                            @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $bulan)
+                                <option value="{{ $bulan }}" {{ request('bulan') == $bulan ? 'selected' : '' }}>
+                                    {{ $bulan }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
+
+                        <!-- Pilih Tahun -->
+                        <select name="tahun" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih Tahun --</option>
+                            @for ($year = date('Y'); $year >= 2000; $year--)
+                                <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endfor
+                        </select>
+
+                        <!-- Tombol Filter -->
+                        <button type="submit" class="btn btn-success">Cetak PDF</button>
+                    </div>
+                </form>
+
+                <!-- Tombol Cetak PDF -->
+                {{-- <a href="{{ route('admin.uploads.approved.pdf', request()->all()) }}" class="btn btn-success">Cetak PDF</a> --}}
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table" id="approved-table" width="100%">

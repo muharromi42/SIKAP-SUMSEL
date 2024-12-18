@@ -50,7 +50,7 @@
                     </a>
                 </li>
 
-                @if (Auth::check() && Auth::user()->level === 'user')
+                @if (Auth::check() && Auth::user()->level === 'user' && Auth::user()->status === 'aktif')
                     <li class="sidebar-item  {{ Request::routeIs('uploads.create') ? 'active' : '' }} ">
                         <a href="{{ route('uploads.create') }}" class='sidebar-link'>
                             <i class="bi bi-file-earmark-arrow-up"></i>

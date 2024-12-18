@@ -129,16 +129,42 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Data dan berkas berhasil dihapus.');
     }
 
-    public function approvedPdf()
+    public function approvedPdf(Request $request)
     {
+        // Ambil filter dari request
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
         // Ambil data yang disetujui
-        $query_data = BerkasModel::where('status', 'approved')->get();
+        // Query data dengan filter bulan dan tahun
+        $query = BerkasModel::where('status', 'approved');
 
+        if ($bulan) {
+            $query->where('bulan', $bulan);
+        }
+
+        if ($tahun) {
+            $query->where('tahun', $tahun);
+        }
+
+        $query_data = $query->get();
+
+        // $judul = $bulan && $tahun
+        //     ? "Data yang Disetujui Bulan {$bulan} Tahun {$tahun}"
+        //     : "Semua Data yang Disetujui";
+
+        if ($bulan && $tahun) {
+            $judul = "Data yang disetujui bulan {$bulan} Tahun {$tahun}";
+        } elseif ($bulan) {
+            $judul = "Data yang disetujui bulan {$bulan}";
+        } elseif ($tahun) {
+            $judul = "Data yang disetujui tahun {$tahun}";
+        } else {
+            $judul = "Semua data yang disetujui";
+        }
         // Buat view untuk PDF
-        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data'));
+        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');
 
         // Return PDF ke browser atau download
         return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
-        // return $pdf->download('approved-data.pdf'); // Untuk langsung diunduh
     }
 }

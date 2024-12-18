@@ -4,9 +4,24 @@
 <head>
     <title>Data Approved</title>
     <style>
+        @page {
+            margin: 50px 25px;
+        }
+
+        header {
+            position: fixed;
+            top: -40px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
         body {
             font-family: Arial, sans-serif;
             font-size: 12px;
+            margin-top: 80px;
         }
 
         table {
@@ -33,27 +48,62 @@
 </head>
 
 <body>
-    <h2>Data yang Disetujui</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nama</th>
-                <th>Status</th>
-                <th>Tanggal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($query_data as $key => $data)
+    <!-- Kop Surat -->
+    <header>
+        <img src="{{ public_path('/img/sumsel.svg') }}" style="width: 80px; float: left; margin-left: 20px;">
+        <div>
+            <h2 style="margin: 0;">PEMERINTAH PROVINSI SUMATERA SELATAN</h2>
+            <h3 style="margin: 0;">DINAS PENDIDIKAN</h3>
+            <h3 style="margin: 0;">Jalan Kapten A. Rivai No. 47 Palembang</h3>
+            <h3 style="margin: 0;">Telp (0711) 354137 - 311089 Faxmile (0711) 31129</h3>
+            <p style="margin: 5px 0;"><i>Email <u>disdik.ss@yahoo.com</u> Website <u>www.disdiksumsel.net</u></i></p>
+        </div>
+        <hr>
+        <br>
+    </header>
+
+    <main>
+        <!-- Judul -->
+        <h2>{{ $judul }}</h2>
+
+        <!-- Tabel Data -->
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $data->nama_user }}</td> <!-- Sesuaikan nama kolom -->
-                    <td>{{ $data->status }}</td>
-                    <td>{{ $data->created_at->format('d-m-Y') }}</td> <!-- Sesuaikan format -->
+                    <th>#</th>
+                    <th>Nama</th>
+                    <th>NIP</th>
+                    <th>Kabupaten/Kota</th>
+                    <th>Instansi</th>
+                    <th>SPTJM</th>
+                    <th>SKP</th>
+                    <th>TPP</th>
+                    <th>DHBPO</th>
+                    <th>E-KINERJA</th>
+                    <th>Bulan</th>
+                    <th>Tahun</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($query_data as $key => $data)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $data->nama_user }}</td>
+                        <td>{{ $data->nip }}</td>
+                        <td>{{ $data->kabupaten }}</td>
+                        <td>{{ $data->nama_instansi }}</td>
+                        <td>lengkap</td> <!-- ✔ -->
+                        <td>lengkap</td> <!-- ✔ -->
+                        <td>lengkap</td> <!-- ✔ -->
+                        <td>lengkap</td> <!-- ✔ -->
+                        <td>lengkap</td> <!-- ✔ -->
+                        <td>{{ $data->bulan }}</td>
+                        <td>{{ $data->tahun }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </main>
 </body>
 
 </html>
