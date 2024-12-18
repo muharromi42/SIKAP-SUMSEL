@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon green mb-2">
-                                            <i class="iconly-boldAdd-User"></i>
+                                            <i class="bi-folder-check"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldBookmark"></i>
+                                            <i class="bi-folder-x"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
