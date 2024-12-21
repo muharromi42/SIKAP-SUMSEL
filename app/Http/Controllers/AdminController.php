@@ -155,13 +155,13 @@ class AdminController extends Controller
         //     : "Semua Data yang Disetujui";
 
         if ($bulan && $tahun) {
-            $judul = "Data yang disetujui bulan {$bulan} Tahun {$tahun}";
+            $judul = "Laporan Dokumen TPP bulan {$bulan} Tahun {$tahun}";
         } elseif ($bulan) {
-            $judul = "Data yang disetujui bulan {$bulan}";
+            $judul = "Laporan Dokumen TPP bulan {$bulan}";
         } elseif ($tahun) {
-            $judul = "Data yang disetujui tahun {$tahun}";
+            $judul = "Laporan Dokumen TPP tahun {$tahun}";
         } else {
-            $judul = "Semua data yang disetujui";
+            $judul = "Semua Laporan Dokumen TPP";
         }
         // Buat view untuk PDF
         $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');

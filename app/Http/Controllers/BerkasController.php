@@ -207,6 +207,7 @@ class BerkasController extends Controller
             'file_tpp' => $request->file('file_tpp') ? $request->file('file_tpp')->store('uploads', 'public') : $berkas->file_tpp,
             'file_dhbpo' => $request->file('file_dhbpo') ? $request->file('file_dhbpo')->store('uploads', 'public') : $berkas->file_dhbpo,
             'file_ekinerja' => $request->file('file_ekinerja') ? $request->file('file_ekinerja')->store('uploads', 'public') : $berkas->file_ekinerja,
+            'status' => 'pending'
         ]);
 
         return redirect()->route('berkas.rejected')->with('success', 'Berkas berhasil diperbarui!');

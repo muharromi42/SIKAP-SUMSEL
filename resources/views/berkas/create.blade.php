@@ -7,7 +7,8 @@
                 <h2 class="text-center mb-4">Unggah Berkas</h2>
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('uploads.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('uploads.store') }}" method="POST" enctype="multipart/form-data"
+                            id="uploadForm">
                             @csrf
                             <!-- Nama User -->
                             <div class="form-group mb-3">
@@ -91,7 +92,8 @@
 
                             <!-- Submit -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Unggah Berkas</button>
+                                <button type="submit" id="confirm-upload" class="btn btn-primary" disabled>Unggah
+                                    Berkas</button>
                             </div>
                         </form>
                     </div>
@@ -99,16 +101,52 @@
             </div>
         </div>
     </div>
+
     @push('scripts')
         <script>
-            @if (session('success'))
-                Swal.fire({
-                    title: 'Success!',
-                    text: "{{ session('success') }}",
-                    icon: 'success',
-                    confirmButtonText: 'OK'
+            // Disable the submit button by default
+            document.addEventListener('DOMContentLoaded', function() {
+                const uploadButton = document.getElementById('confirm-upload');
+                const fileInputs = document.querySelectorAll('input[type="file"]');
+
+                // Check all file inputs
+                function validateFiles() {
+                    let allFilesValid = true;
+                    fileInputs.forEach(input => {
+                        if (!input.files.length) {
+                            allFilesValid = false;
+                        }
+                    });
+                    uploadButton.disabled = !allFilesValid; // Disable button if any file is missing
+                }
+
+                // Attach event listeners to file inputs
+                fileInputs.forEach(input => {
+                    input.addEventListener('change', validateFiles);
                 });
-            @endif
+
+                // SweetAlert confirmation on submit
+                uploadButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Pastikan semua data sudah benar sebelum diunggah!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, unggah!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('uploadForm').submit();
+                        }
+                    });
+                });
+
+                // Initial validation
+                validateFiles();
+            });
         </script>
     @endpush
 @endsection

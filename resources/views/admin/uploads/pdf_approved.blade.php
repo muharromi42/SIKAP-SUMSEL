@@ -50,8 +50,9 @@
 <body>
     <!-- Kop Surat -->
     <header>
-        <img src="{{ public_path('/img/sumsel.svg') }}" style="width: 80px; float: left; margin-left: 20px;">
+
         <div>
+            <img src="{{ public_path('/img/sumsel.svg') }}" style="width: 80px; float: center; margin-left: 220px;">
             <h2 style="margin: 0;">PEMERINTAH PROVINSI SUMATERA SELATAN</h2>
             <h3 style="margin: 0;">DINAS PENDIDIKAN</h3>
             <h3 style="margin: 0;">Jalan Kapten A. Rivai No. 47 Palembang</h3>
