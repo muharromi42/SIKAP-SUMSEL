@@ -1,1 +1,9 @@
-* linguist-vendored
+
+* text=auto eol=lf
+*.blade.php diff=html
+*.css diff=css
+*.md diff=markdown
+*.php diff=php
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
