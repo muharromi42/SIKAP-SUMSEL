@@ -32,7 +32,9 @@
                                 <th>Tahun</th>
                                 <th>Bulan</th>
                                 <th>Kabupaten</th>
+                                <th>Note</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +56,9 @@
                     serverSide: true,
                     scrollX: true,
                     ajax: "{{ route('berkas.index') }}",
+                    order: [
+                        [7, 'asc']
+                    ], // Indeks 7 adalah kolom 'status', 'asc' untuk urutan menaik.
                     columns: [{
                             data: 'DT_RowIndex',
                             name: 'DT_RowIndex',
@@ -80,13 +85,48 @@
                             name: 'kabupaten',
                         },
                         {
+                            data: 'note',
+                            name: 'note',
+                        },
+                        {
                             data: 'status',
                             name: 'status',
-                            orderable: false,
-                            searchable: false
-                        }
-                    ]
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                        },
+                    ],
+
                 });
+                // menambahkan sweetalert2 untuk konfirmasi delete button
+                $('#rejected-table').on('click', '.delete-button', function(event) {
+                    event.preventDefault();
+                    var form = $(this).closest('form');
+                    Swal.fire({
+                        title: 'Yakin?',
+                        text: "Kamu tidak bisa mengulangnya lagi!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Batal",
+                        confirmButtonText: 'Ya, hapus data ini!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+
+                @if (session('success'))
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('success') }}",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                @endif
             });
         </script>
     @endpush

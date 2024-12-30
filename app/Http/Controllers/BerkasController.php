@@ -18,6 +18,13 @@ class BerkasController extends Controller
             $query_data = BerkasModel::where('user_id', auth()->id())->get(); // Hanya ambil data yang terkait dengan user yang login
             return DataTables::of($query_data)
                 ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $showButton = '<a href="' . route('uploads.edit', $row->id) . '" class="btn btn-primary">Lihat</a>';
+                    $deleteButton = '<form action="' . route('uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger delete-button">Delete</button></form>';
+                    if ($row->status == 'rejected') {
+                        return $showButton . ' ' . $deleteButton;
+                    }
+                })
                 ->addColumn('status', function ($row) {
                     // Menambahkan card untuk status
                     if ($row->status == 'approved') {
@@ -28,7 +35,7 @@ class BerkasController extends Controller
                         return '<div class="card"><div class="card-body"><span class="badge bg-warning">Menunggu</span></div></div>';
                     }
                 })
-                ->rawColumns(['status'])
+                ->rawColumns(['status', 'action'])
                 ->make(true);
         }
         return view('berkas.index');
