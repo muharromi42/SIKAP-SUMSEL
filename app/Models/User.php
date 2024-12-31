@@ -25,12 +25,16 @@ class User extends Authenticatable
         'level',
         'status',
         'password',
+        'kabupaten',
+        'nama_instansi',
         'notel',
         'jabatan',
         'birthday',
         'profile_picture',
         'tanggal_registrasi',
     ];
+
+    public $timestamps = false;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -51,4 +55,9 @@ class User extends Authenticatable
         'tanggal_registrasi' => 'datetime',
         // 'password' => 'hashed',
     ];
+
+    public function berkas()
+    {
+        return $this->hasMany(BerkasModel::class);
+    }
 }

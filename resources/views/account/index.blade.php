@@ -83,6 +83,23 @@
                                         placeholder="Your jabatan" value="{{ old('jabatan', $user->jabatan) }}">
                                 </div>
 
+                                <!-- Kabupaten -->
+                                <div class="form-group mb-3">
+                                    <label for="kabupaten" class="form-label">Kabupaten / Kota</label>
+                                    <select name="kabupaten" id="kabupaten" class="form-control" required>
+                                        @foreach ($kabupatenOptions as $kabupaten)
+                                            <option value="{{ $kabupaten }}">{{ $kabupaten }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Nama Instansi -->
+                                <div class="form-group mb-3">
+                                    <label for="nama_instansi" class="form-label">Nama Instansi</label>
+                                    <input type="text" name="nama_instansi" id="nama_instansi" class="form-control"
+                                        placeholder="Masukkan Nama Instansi" required>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="birthday" class="form-label">birthday</label>
                                     <input type="date" name="birthday" id="birthday" class="form-control"

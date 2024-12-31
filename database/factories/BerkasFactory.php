@@ -37,25 +37,11 @@ class BerkasFactory extends Factory
             'user_id' => $user->id, // ID dari user yang dipilih secara acak
             'nama_user' => $user->nama, // Menggunakan nama user dari tabel users
             'nip' => $user->nip, // Menggunakan NIP user dari tabel users
+            'kabupaten' => $user->kabupaten, // Kabupaten diambil dari tabel users
+            'nama_instansi' => $user->nama_instansi, // Nama instansi diambil dari tabel users
             'tahun' => $this->faker->numberBetween(2020, 2024), // Tahun dibatasi dari 2020 sampai 2024
             'bulan' => $bulanIndonesia[$this->faker->monthName], // Mengonversi nama bulan ke bahasa Indonesia
-            'kabupaten' => $this->faker->randomElement([
-                'Banyuasin',
-                'Empat Lawang',
-                'Lahat',
-                'Lubuk Linggau',
-                'Muara Enim',
-                'Musi Banyuasin',
-                'Musi Rawas',
-                'Ogan Ilir',
-                'Ogan Komering Ilir',
-                'Ogan Komering Ulu',
-                'Palembang',
-                'Pagar Alam',
-                'Prabumulih',
-            ]), // Menggunakan daftar kabupaten yang telah ditentukan
             'npsn_sekolah' => $this->faker->optional()->numerify('###'), // NPSN sekolah bisa kosong
-            'nama_instansi' => $this->faker->company,
             'file_sptjm' => 'uploads/default.pdf',
             'file_skp' => 'uploads/default.pdf',
             'file_tpp' => 'uploads/default.pdf',

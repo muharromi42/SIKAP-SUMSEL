@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('nip'); // NIP (diambil dari user)
             $table->year('tahun'); // Tahun dipilih user
             $table->string('bulan'); // Bulan dipilih user
-            $table->string('kabupaten'); // Dropdown pilihan kabupaten
+            $table->string('kabupaten')->nullable(); // Menambahkan kolom kabupaten
+            $table->string('nama_instansi')->nullable(); // Menambahkan kolom nama instansi
             $table->string('npsn_sekolah')->nullable(); // Tidak wajib
-            $table->string('nama_instansi'); // Nama instansi
             $table->string('file_sptjm'); // Path file SPTJM
             $table->string('file_skp'); // Path file SKP
             $table->string('file_tpp'); // Path file TPP
@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('status')->default('pending'); // Status validasi ('pending', 'approved', 'rejected')
             $table->date('deadline')->nullable(); // Menambahkan kolom deadline
             $table->string('note')->nullable(); // Menambahkan kolom note
-            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

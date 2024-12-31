@@ -17,9 +17,7 @@ class BerkasModel extends Model
         'nip',
         'tahun',
         'bulan',
-        'kabupaten',
         'npsn_sekolah',
-        'nama_instansi',
         'file_sptjm',
         'file_skp',
         'file_tpp',
@@ -28,6 +26,8 @@ class BerkasModel extends Model
         'status',
         'note',
     ];
+
+    public $timestamps = false;
 
     public function user()
     {

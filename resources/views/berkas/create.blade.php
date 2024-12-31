@@ -47,11 +47,8 @@
                             <!-- Kabupaten -->
                             <div class="form-group mb-3">
                                 <label for="kabupaten" class="form-label">Kabupaten / Kota</label>
-                                <select name="kabupaten" id="kabupaten" class="form-control" required>
-                                    @foreach ($kabupatenOptions as $kabupaten)
-                                        <option value="{{ $kabupaten }}">{{ $kabupaten }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="kabupaten" id="kabupaten" class="form-control"
+                                    value="{{ auth()->user()->kabupaten }}" disabled>
                             </div>
 
                             <!-- NPSN Sekolah -->
@@ -65,7 +62,7 @@
                             <div class="form-group mb-3">
                                 <label for="nama_instansi" class="form-label">Nama Instansi</label>
                                 <input type="text" name="nama_instansi" id="nama_instansi" class="form-control"
-                                    placeholder="Masukkan Nama Instansi" required>
+                                    value="{{ auth()->user()->nama_instansi }}" disabled>
                             </div>
 
                             <!-- File Uploads -->

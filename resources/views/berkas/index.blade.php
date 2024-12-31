@@ -100,7 +100,7 @@
 
                 });
                 // menambahkan sweetalert2 untuk konfirmasi delete button
-                $('#rejected-table').on('click', '.delete-button', function(event) {
+                $('#table-1').on('click', '.delete-button', function(event) {
                     event.preventDefault();
                     var form = $(this).closest('form');
                     Swal.fire({

@@ -14,8 +14,23 @@ class AccountController extends Controller
         // Ambil data user berdasarkan ID
         $user = Auth::user();
 
+        $kabupatenOptions = [
+            'Banyuasin',
+            'Empat Lawang',
+            'Lahat',
+            'Lubuk Linggau',
+            'Muara Enim',
+            'Musi Banyuasin',
+            'Musi Rawas',
+            'Ogan Ilir',
+            'Ogan Komering Ilir',
+            'Ogan Komering Ulu',
+            'Palembang',
+            'Pagar Alam',
+            'Prabumulih',
+        ];
 
-        return view('account.index', compact('user'));
+        return view('account.index', compact('user', 'kabupatenOptions'));
     }
 
     public function update(Request $request, $id)
@@ -28,6 +43,8 @@ class AccountController extends Controller
             'nip' => 'nullable|string|max:255', // Ubah nip menjadi sesuai yang ada di form
             'jabatan' => 'nullable|string|max:255',
             'notel' => 'nullable|string|max:255',
+            'kabupaten' => 'nullable|string|max:255',
+            'nama_instansi' => 'nullable|string|max:255',
             'birthday' => 'nullable|date|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
