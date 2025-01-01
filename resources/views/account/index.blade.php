@@ -88,7 +88,10 @@
                                     <label for="kabupaten" class="form-label">Kabupaten / Kota</label>
                                     <select name="kabupaten" id="kabupaten" class="form-control" required>
                                         @foreach ($kabupatenOptions as $kabupaten)
-                                            <option value="{{ $kabupaten }}">{{ $kabupaten }}</option>
+                                            <option value="{{ $kabupaten }}"
+                                                {{ old('kabupaten', $user->kabupaten) == $kabupaten ? 'selected' : '' }}>
+                                                {{ $kabupaten }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -97,7 +100,8 @@
                                 <div class="form-group mb-3">
                                     <label for="nama_instansi" class="form-label">Nama Instansi</label>
                                     <input type="text" name="nama_instansi" id="nama_instansi" class="form-control"
-                                        placeholder="Masukkan Nama Instansi" required>
+                                        placeholder="Masukkan Nama Instansi"
+                                        value="{{ old('nama_instansi', $user->nama_instansi) }}">
                                 </div>
 
                                 <div class="form-group">

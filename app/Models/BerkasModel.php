@@ -18,6 +18,8 @@ class BerkasModel extends Model
         'tahun',
         'bulan',
         'npsn_sekolah',
+        'kabupaten',
+        'nama_instansi',
         'file_sptjm',
         'file_skp',
         'file_tpp',
