@@ -25,6 +25,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        // Cari user berdasarkan NIP
+        $user = \App\Models\User::where('nip', $credentials['nip'])->first();
+
+        // Periksa apakah user ditemukan dan statusnya aktif
+        if (!$user || $user->status !== 'aktif') {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Akun Anda tidak aktif atau tidak ditemukan.'
+            ])->withInput($request->only('nip'));
+        }
+
         // Cek kredensial menggunakan Auth
         if (Auth::attempt(['nip' => $credentials['nip'], 'password' => $credentials['password']])) {
             // Regenerate session
@@ -38,6 +49,7 @@ class AuthController extends Controller
             'message' => 'NIP atau password salah.'
         ])->withInput($request->only('nip'));
     }
+
 
     public function dashboard(Request $request)
     {
@@ -126,7 +138,7 @@ class AuthController extends Controller
         ]);
         // Tambahkan nilai default secara manual
         $validatedData['level'] = 'user';
-        $validatedData['status'] = 'aktif'; // true untuk aktif
+        $validatedData['status'] = 'non-aktif'; // true untuk aktif
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
