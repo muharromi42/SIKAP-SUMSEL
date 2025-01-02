@@ -19,7 +19,7 @@ class BerkasController extends Controller
             return DataTables::of($query_data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $showButton = '<a href="' . route('uploads.edit', $row->id) . '" class="btn btn-primary">Lihat</a>';
+                    $showButton = '<a href="' . route('uploads.edit', $row->id) . '" class="btn btn-primary">Edit</a>';
                     $deleteButton = '<form action="' . route('uploads.destroy', $row->id) . '" method="POST" style="display:inline;" class="delete-form">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger delete-button">Delete</button></form>';
                     if ($row->status == 'rejected') {
                         return $showButton . ' ' . $deleteButton;
@@ -189,9 +189,9 @@ class BerkasController extends Controller
         $request->validate([
             'tahun' => 'required|integer',
             'bulan' => 'required|string',
-            'kabupaten' => 'required|string',
+
             'npsn_sekolah' => 'nullable|string',
-            'nama_instansi' => 'required|string',
+
             'file_sptjm' => 'nullable|mimes:pdf|max:2048',
             'file_skp' => 'nullable|mimes:pdf|max:2048',
             'file_tpp' => 'nullable|mimes:pdf|max:2048',
@@ -199,14 +199,14 @@ class BerkasController extends Controller
             'file_ekinerja' => 'nullable|mimes:pdf|max:2048',
         ]);
 
-
+        $user = Auth::user();
         // Update data
         $berkas->update([
             'tahun' => $request->tahun,
             'bulan' => $request->bulan,
-            'kabupaten' => $request->kabupaten,
+            'kabupaten' => $user->kabupaten,
+            'nama_instansi' => $user->nama_instansi,
             'npsn_sekolah' => $request->npsn_sekolah,
-            'nama_instansi' => $request->nama_instansi,
             'file_sptjm' => $request->file('file_sptjm') ? $request->file('file_sptjm')->store('uploads', 'public') : $berkas->file_sptjm,
             'file_skp' => $request->file('file_skp') ? $request->file('file_skp')->store('uploads', 'public') : $berkas->file_skp,
             'file_tpp' => $request->file('file_tpp') ? $request->file('file_tpp')->store('uploads', 'public') : $berkas->file_tpp,
@@ -215,7 +215,7 @@ class BerkasController extends Controller
             'status' => 'pending'
         ]);
 
-        return redirect()->route('berkas.rejected')->with('success', 'Berkas berhasil diperbarui!');
+        return redirect()->route('berkas.index')->with('success', 'Berkas berhasil diperbarui!');
     }
 
     public function destroy($id)
