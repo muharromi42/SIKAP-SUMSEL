@@ -1,11 +1,15 @@
 * text=auto eol=lf
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# Mengklasifikasikan file Blade sebagai Blade
+*.blade.php linguist-language=Blade diff=html
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Mengklasifikasikan file CSS, HTML, dan PHP dengan benar
+*.css linguist-language=CSS diff=css
+*.html linguist-language=HTML diff=html
+*.md linguist-language=Markdown diff=markdown
+*.php linguist-language=PHP diff=php
+
+# Mengabaikan file dan folder yang tidak signifikan dalam statistik bahasa
+/.github linguist-vendored export-ignore
+CHANGELOG.md linguist-vendored export-ignore
+.styleci.yml linguist-vendored export-ignore
