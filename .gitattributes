@@ -1,15 +1,15 @@
-* text=auto eol=lf
+# Mengklasifikasikan file Blade sebagai Blade, bukan HTML
+*.blade.php linguist-language=Blade
 
-# Mengklasifikasikan file Blade sebagai Blade
-*.blade.php linguist-language=Blade diff=html
+# Mengklasifikasikan file PHP sebagai PHP
+*.php linguist-language=PHP
 
-# Mengklasifikasikan file CSS, HTML, dan PHP dengan benar
-*.css linguist-language=CSS diff=css
-*.html linguist-language=HTML diff=html
-*.md linguist-language=Markdown diff=markdown
-*.php linguist-language=PHP diff=php
+# Mengabaikan file konfigurasi dari statistik bahasa
+package.json linguist-vendored
+vite.config.js linguist-vendored
+composer.json linguist-vendored
+composer.lock linguist-vendored
 
-# Mengabaikan file dan folder yang tidak signifikan dalam statistik bahasa
-/.github linguist-vendored export-ignore
-CHANGELOG.md linguist-vendored export-ignore
-.styleci.yml linguist-vendored export-ignore
+# Mengabaikan file CSS yang tidak signifikan
+*.css linguist-vendored
+*.scss linguist-vendored
