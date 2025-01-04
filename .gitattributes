@@ -1,1 +1,1 @@
-.github/fsharp-custom-action/** -linguist-vendored
+*.html linguist-detectable=false
