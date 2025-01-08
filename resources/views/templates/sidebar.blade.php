@@ -118,6 +118,35 @@
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-person-circle"></i>
+                        <span>User Progress</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        @if (Auth::check() && Auth::user()->level === 'admin')
+                            <li class="submenu-item  ">
+                                <a href="{{ route('users.index') }}" class="submenu-link">
+                                    <i class="bi bi-person-add"></i>
+                                    <span>User Belum Kirim Berkas</span>
+                                </a>
+
+                            </li>
+
+                            <li class="submenu-item  ">
+                                <a href="{{ route('admin.deadlines.index') }}" class="submenu-link">
+                                    <i class="bi bi-person-add"></i>
+                                    <span>User Sudah Kirim Berkas</span>
+                                </a>
+
+                            </li>
+                        @endif
+
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-person-circle"></i>
                         <span>Other</span>
                     </a>
 
