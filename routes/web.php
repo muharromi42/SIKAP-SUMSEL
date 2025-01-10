@@ -35,6 +35,7 @@ Route::get('/contact', [OtherController::class, 'contact'])->name('contact');
 
 
 Route::resource('users', UserController::class);
+Route::get('usersend', [UserController::class, 'usersend'])->name('usersend');
 
 
 Route::middleware('auth')->group(function () {

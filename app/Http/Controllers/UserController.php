@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -102,5 +103,39 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'data user berhasil di hapus');
+    }
+
+    public function usersend(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = User::has('berkas')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-success">Dikirim</span></div></div>';
+                })
+                ->rawColumns(['status'])->make(true);
+        }
+        return view('users.send');
+    }
+
+    public function approvedPdf(Request $request)
+    {
+        $query = User::where('status', 'approved');
+
+
+        $query_data = $query->get();
+
+        // $judul = $bulan && $tahun
+        //     ? "Data yang Disetujui Bulan {$bulan} Tahun {$tahun}"
+        //     : "Semua Data yang Disetujui";
+
+        $judul = "Semua Laporan Dokumen TPP";
+
+        // Buat view untuk PDF
+        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');
+
+        // Return PDF ke browser atau download
+        return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
     }
 }

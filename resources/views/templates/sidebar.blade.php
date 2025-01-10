@@ -133,7 +133,7 @@
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="{{ route('admin.deadlines.index') }}" class="submenu-link">
+                                <a href="{{ route('usersend') }}" class="submenu-link">
                                     <i class="bi bi-person-add"></i>
                                     <span>User Sudah Kirim Berkas</span>
                                 </a>

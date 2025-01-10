@@ -54,7 +54,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>No Telepon</th>
                                 <th>NIP</th>
                                 <th>Level</th>
                                 <th>Status</th>
@@ -97,8 +97,8 @@
                             name: 'nama'
                         },
                         {
-                            data: 'email',
-                            name: 'email'
+                            data: 'notel',
+                            name: 'notel'
                         },
                         {
                             data: 'nip',
