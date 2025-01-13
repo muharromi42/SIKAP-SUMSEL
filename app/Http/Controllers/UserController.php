@@ -119,6 +119,20 @@ class UserController extends Controller
         return view('users.send');
     }
 
+    public function usernotsend(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = User::hasnot('berkas')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) {
+                    return '<div class="card"><div class="card-body"><span class="badge bg-success">Dikirim</span></div></div>';
+                })
+                ->rawColumns(['status'])->make(true);
+        }
+        return view('users.send');
+    }
+
     public function approvedPdf(Request $request)
     {
         $query = User::where('status', 'approved');
