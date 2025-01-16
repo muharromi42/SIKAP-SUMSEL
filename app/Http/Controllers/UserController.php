@@ -122,15 +122,15 @@ class UserController extends Controller
     public function usernotsend(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::hasnot('berkas')->get();
+            $data = User::doesnthave('berkas')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
-                    return '<div class="card"><div class="card-body"><span class="badge bg-success">Dikirim</span></div></div>';
+                    return '<div class="card"><div class="card-body"><span class="badge bg-danger">Belum Mengirim</span></div></div>';
                 })
                 ->rawColumns(['status'])->make(true);
         }
-        return view('users.send');
+        return view('users.notsend');
     }
 
     public function approvedPdf(Request $request)

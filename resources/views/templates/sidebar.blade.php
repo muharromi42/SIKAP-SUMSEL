@@ -125,7 +125,7 @@
 
                         @if (Auth::check() && Auth::user()->level === 'admin')
                             <li class="submenu-item  ">
-                                <a href="{{ route('users.index') }}" class="submenu-link">
+                                <a href="{{ route('usernotsend') }}" class="submenu-link">
                                     <i class="bi bi-person-add"></i>
                                     <span>User Belum Kirim Berkas</span>
                                 </a>
