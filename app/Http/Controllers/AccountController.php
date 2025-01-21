@@ -30,6 +30,14 @@ class AccountController extends Controller
             'Prabumulih',
         ];
 
+        $instansiOptions = [
+            'Kasubbag Umum dan Kepegawaian',
+            'Analis Prasana Pendidikan Umum dan Kepegawaian',
+            'Pengelola data peningkatan PTK',
+            'Pengadministrasi Pendidik dan Tenaga Kependidikan',
+            'Verifikator Keuangan',
+        ];
+
         return view('account.index', compact('user', 'kabupatenOptions'));
     }
 
