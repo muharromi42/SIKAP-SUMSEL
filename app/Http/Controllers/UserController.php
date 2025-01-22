@@ -152,4 +152,24 @@ class UserController extends Controller
         // Return PDF ke browser atau download
         return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
     }
+
+    public function rejectedPdf(Request $request)
+    {
+        $query = User::where('status', 'rejected');
+
+
+        $query_data = $query->get();
+
+        // $judul = $bulan && $tahun
+        //     ? "Data yang Disetujui Bulan {$bulan} Tahun {$tahun}"
+        //     : "Semua Data yang Disetujui";
+
+        $judul = "Semua Laporan Dokumen TPP";
+
+        // Buat view untuk PDF
+        $pdf = Pdf::loadView('admin.uploads.pdf_rejected', compact('query_data', 'judul'))->setPaper('a4', 'landscape');
+
+        // Return PDF ke browser atau download
+        return $pdf->stream('rejected-data.pdf'); // Untuk ditampilkan di browser
+    }
 }
