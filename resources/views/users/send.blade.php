@@ -25,7 +25,8 @@
                 </h5>
             </div>
             <div class="card-body">
-                <button type="submit" class="btn rounded-pill btn-success m-2">
+                <button type="button" class="btn rounded-pill btn-success m-2"
+                    onclick="window.location.href='{{ route('approvedPdf') }}'">
                     Cetak PDF
                 </button>
                 <div class="table-responsive">

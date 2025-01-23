@@ -73,33 +73,21 @@
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
+                    <th>No Telepon</th>
                     <th>NIP</th>
                     <th>Kabupaten/Kota</th>
                     <th>Instansi</th>
-                    <th>SPTJM</th>
-                    <th>SKP</th>
-                    <th>TPP</th>
-                    <th>DHBPO</th>
-                    <th>E-KINERJA</th>
-                    <th>Bulan</th>
-                    <th>Tahun</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($query_data as $key => $data)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $data->nama_user }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->notel }}</td>
                         <td>{{ $data->nip }}</td>
                         <td>{{ $data->kabupaten }}</td>
                         <td>{{ $data->nama_instansi }}</td>
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>{{ $data->bulan }}</td>
-                        <td>{{ $data->tahun }}</td>
                     </tr>
                 @endforeach
             </tbody>
