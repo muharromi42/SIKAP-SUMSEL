@@ -33,7 +33,11 @@ class AdminController extends Controller
                 ->make(true);
         }
 
-        return view('admin.uploads.approved');
+        // Ambil data nama_instansi yang unik
+        $instansi_list = BerkasModel::select('nama_instansi')->distinct()->pluck('nama_instansi');
+
+
+        return view('admin.uploads.approved', compact('instansi_list'));
     }
 
     public function rejected(Request $request)
@@ -133,12 +137,23 @@ class AdminController extends Controller
 
     public function approvedPdf(Request $request)
     {
+
         // Ambil filter dari request
+        $instansi = $request->input('instansi');
+        $kabupaten = $request->input('kabupaten');
         $bulan = $request->input('bulan');
         $tahun = $request->input('tahun');
         // Ambil data yang disetujui
         // Query data dengan filter bulan dan tahun
         $query = BerkasModel::where('status', 'approved');
+
+        if ($instansi) {
+            $query->where('nama_instansi', $instansi);
+        }
+
+        if ($kabupaten) {
+            $query->where('kabupaten', $kabupaten);
+        }
 
         if ($bulan) {
             $query->where('bulan', $bulan);

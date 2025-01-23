@@ -9,6 +9,30 @@
                 <!-- Form Filter -->
                 <form method="GET" action="{{ route('admin.uploads.approved.pdf') }}">
                     <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- Pilih instansi -->
+                        <select name="instansi" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih instansi --</option>
+                            @foreach ($instansi_list as $instansi)
+                                <option value="{{ $instansi }}"
+                                    {{ request('instansi') == $instansi ? 'selected' : '' }}>
+                                    {{ $instansi }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
+                        <!-- Pilih kabupaten -->
+                        <select name="kabupaten" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih kabupaten --</option>
+                            @foreach (['Banyuasin', 'Empat Lawang', 'Lahat', 'Lubuk Linggau', 'Muara Enim', 'Musi Banyuasin', 'Musi Rawas', 'Ogan Ilir', 'Ogan Komering Ilir', 'Ogan Komering Ulu', 'Palembang', 'Pagar Alam', 'Prabumulih'] as $kabupaten)
+                                <option value="{{ $kabupaten }}"
+                                    {{ request('kabupaten') == $kabupaten ? 'selected' : '' }}>
+                                    {{ $kabupaten }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
                         <!-- Pilih Bulan -->
                         <select name="bulan" class="form-control" style="width: 150px;">
                             <option value="">-- Pilih Bulan --</option>
