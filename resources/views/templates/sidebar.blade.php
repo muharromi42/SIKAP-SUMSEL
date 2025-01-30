@@ -115,15 +115,16 @@
                     </li>
                 @endif
 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-person-circle"></i>
-                        <span>User Progress</span>
-                    </a>
+                @if (Auth::check() && Auth::user()->level === 'admin')
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-person-circle"></i>
+                            <span>User Progress</span>
+                        </a>
 
-                    <ul class="submenu ">
+                        <ul class="submenu ">
 
-                        @if (Auth::check() && Auth::user()->level === 'admin')
+
                             <li class="submenu-item  ">
                                 <a href="{{ route('usernotsend') }}" class="submenu-link">
                                     <i class="bi bi-person-add"></i>
@@ -139,10 +140,11 @@
                                 </a>
 
                             </li>
-                        @endif
 
-                    </ul>
-                </li>
+
+                        </ul>
+                    </li>
+                @endif
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
