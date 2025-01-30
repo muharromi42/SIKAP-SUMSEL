@@ -58,7 +58,10 @@ class AdminController extends Controller
                 ->make(true);
         }
 
-        return view('admin.uploads.rejected');
+        // Ambil data nama_instansi yang unik
+        $instansi_list = BerkasModel::select('nama_instansi')->distinct()->pluck('nama_instansi');
+
+        return view('admin.uploads.rejected', compact('instansi_list'));
     }
 
     public function pending(Request $request)
@@ -78,8 +81,10 @@ class AdminController extends Controller
                 ->rawColumns(['action', 'status'])
                 ->make(true);
         }
+        // Ambil data nama_instansi yang unik
+        $instansi_list = BerkasModel::select('nama_instansi')->distinct()->pluck('nama_instansi');
 
-        return view('admin.uploads.pending');
+        return view('admin.uploads.pending', compact('instansi_list'));
     }
 
 
@@ -177,6 +182,106 @@ class AdminController extends Controller
             $judul = "Laporan Dokumen TPP tahun {$tahun}";
         } else {
             $judul = "Semua Laporan Dokumen TPP";
+        }
+        // Buat view untuk PDF
+        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');
+
+        // Return PDF ke browser atau download
+        return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
+    }
+
+    public function rejectedPdf(Request $request)
+    {
+
+        // Ambil filter dari request
+        $instansi = $request->input('instansi');
+        $kabupaten = $request->input('kabupaten');
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+        // Ambil data yang disetujui
+        // Query data dengan filter bulan dan tahun
+        $query = BerkasModel::where('status', 'rejected');
+
+        if ($instansi) {
+            $query->where('nama_instansi', $instansi);
+        }
+
+        if ($kabupaten) {
+            $query->where('kabupaten', $kabupaten);
+        }
+
+        if ($bulan) {
+            $query->where('bulan', $bulan);
+        }
+
+        if ($tahun) {
+            $query->where('tahun', $tahun);
+        }
+
+        $query_data = $query->get();
+
+        // $judul = $bulan && $tahun
+        //     ? "Data yang Disetujui Bulan {$bulan} Tahun {$tahun}"
+        //     : "Semua Data yang Disetujui";
+
+        if ($bulan && $tahun) {
+            $judul = "Laporan Dokumen Ditolak TPP bulan {$bulan} Tahun {$tahun}";
+        } elseif ($bulan) {
+            $judul = "Laporan Dokumen Ditolak TPP bulan {$bulan}";
+        } elseif ($tahun) {
+            $judul = "Laporan Dokumen Ditolak TPP tahun {$tahun}";
+        } else {
+            $judul = "Semua Laporan Dokumen Ditolak TPP";
+        }
+        // Buat view untuk PDF
+        $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');
+
+        // Return PDF ke browser atau download
+        return $pdf->stream('approved-data.pdf'); // Untuk ditampilkan di browser
+    }
+
+    public function pendingPdf(Request $request)
+    {
+
+        // Ambil filter dari request
+        $instansi = $request->input('instansi');
+        $kabupaten = $request->input('kabupaten');
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+        // Ambil data yang disetujui
+        // Query data dengan filter bulan dan tahun
+        $query = BerkasModel::where('status', 'pending');
+
+        if ($instansi) {
+            $query->where('nama_instansi', $instansi);
+        }
+
+        if ($kabupaten) {
+            $query->where('kabupaten', $kabupaten);
+        }
+
+        if ($bulan) {
+            $query->where('bulan', $bulan);
+        }
+
+        if ($tahun) {
+            $query->where('tahun', $tahun);
+        }
+
+        $query_data = $query->get();
+
+        // $judul = $bulan && $tahun
+        //     ? "Data yang Disetujui Bulan {$bulan} Tahun {$tahun}"
+        //     : "Semua Data yang Disetujui";
+
+        if ($bulan && $tahun) {
+            $judul = "Laporan Dokumen Pending TPP bulan {$bulan} Tahun {$tahun}";
+        } elseif ($bulan) {
+            $judul = "Laporan Dokumen Pending TPP bulan {$bulan}";
+        } elseif ($tahun) {
+            $judul = "Laporan Dokumen Pending TPP tahun {$tahun}";
+        } else {
+            $judul = "Semua Laporan Dokumen Pending TPP";
         }
         // Buat view untuk PDF
         $pdf = Pdf::loadView('admin.uploads.pdf_approved', compact('query_data', 'judul'))->setPaper('a4', 'landscape');

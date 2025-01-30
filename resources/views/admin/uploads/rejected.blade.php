@@ -5,6 +5,58 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Berkas Ditolak</h5>
+                <form method="GET" action="{{ route('admin.uploads.rejected.pdf') }}">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- Pilih instansi -->
+                        <select name="instansi" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih instansi --</option>
+                            @foreach ($instansi_list as $instansi)
+                                <option value="{{ $instansi }}"
+                                    {{ request('instansi') == $instansi ? 'selected' : '' }}>
+                                    {{ $instansi }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
+                        <!-- Pilih kabupaten -->
+                        <select name="kabupaten" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih kabupaten --</option>
+                            @foreach (['Banyuasin', 'Empat Lawang', 'Lahat', 'Lubuk Linggau', 'Muara Enim', 'Musi Banyuasin', 'Musi Rawas', 'Ogan Ilir', 'Ogan Komering Ilir', 'Ogan Komering Ulu', 'Palembang', 'Pagar Alam', 'Prabumulih'] as $kabupaten)
+                                <option value="{{ $kabupaten }}"
+                                    {{ request('kabupaten') == $kabupaten ? 'selected' : '' }}>
+                                    {{ $kabupaten }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
+                        <!-- Pilih Bulan -->
+                        <select name="bulan" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih Bulan --</option>
+                            @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $bulan)
+                                <option value="{{ $bulan }}" {{ request('bulan') == $bulan ? 'selected' : '' }}>
+                                    {{ $bulan }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
+
+                        <!-- Pilih Tahun -->
+                        <select name="tahun" class="form-control" style="width: 150px;">
+                            <option value="">-- Pilih Tahun --</option>
+                            @for ($year = date('Y'); $year >= 2000; $year--)
+                                <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endfor
+                        </select>
+
+                        <!-- Tombol Filter -->
+                        <button type="submit" class="btn btn-success">Cetak PDF</button>
+                    </div>
+                </form>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

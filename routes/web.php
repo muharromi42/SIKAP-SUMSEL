@@ -76,3 +76,5 @@ Route::get('/berkas/rejected', [BerkasController::class, 'rejected'])->name('ber
 // Route::get('/notifications', [BerkasController::class, 'getNotifications'])->middleware('auth');
 
 Route::get('/admin/uploads/approved/pdf', [AdminController::class, 'approvedPdf'])->name('admin.uploads.approved.pdf');
+Route::get('/admin/uploads/rejected/pdf', [AdminController::class, 'rejectedPdf'])->name('admin.uploads.rejected.pdf');
+Route::get('/admin/uploads/pending/pdf', [AdminController::class, 'pendingPdf'])->name('admin.uploads.pending.pdf');

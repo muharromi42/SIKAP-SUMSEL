@@ -93,11 +93,51 @@
                         <td>{{ $data->nip }}</td>
                         <td>{{ $data->kabupaten }}</td>
                         <td>{{ $data->nama_instansi }}</td>
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
-                        <td>lengkap</td> <!-- ✔ -->
+                        <td>
+                            @if ($data->status == 'rejected')
+                                tidak lengkap
+                            @elseif ($data->status == 'pending')
+                                tidak lengkap
+                            @else
+                                lengkap
+                            @endif
+                        </td>
+                        <td>
+                            @if ($data->status == 'rejected')
+                                tidak lengkap
+                            @elseif ($data->status == 'pending')
+                                tidak lengkap
+                            @else
+                                lengkap
+                            @endif
+                        </td>
+                        <td>
+                            @if ($data->status == 'rejected')
+                                tidak lengkap
+                            @elseif ($data->status == 'pending')
+                                tidak lengkap
+                            @else
+                                lengkap
+                            @endif
+                        </td>
+                        <td>
+                            @if ($data->status == 'rejected')
+                                tidak lengkap
+                            @elseif ($data->status == 'pending')
+                                tidak lengkap
+                            @else
+                                lengkap
+                            @endif
+                        </td>
+                        <td>
+                            @if ($data->status == 'rejected')
+                                tidak lengkap
+                            @elseif ($data->status == 'pending')
+                                tidak lengkap
+                            @else
+                                lengkap
+                            @endif
+                        </td>
                         <td>{{ $data->bulan }}</td>
                         <td>{{ $data->tahun }}</td>
                     </tr>
