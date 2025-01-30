@@ -108,7 +108,7 @@ class UserController extends Controller
     public function usersend(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::has('berkas')->get();
+            $data = User::where('level', 'user')->has('berkas')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
@@ -122,7 +122,7 @@ class UserController extends Controller
     public function usernotsend(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::doesnthave('berkas')->get();
+            $data = User::where('level', 'user')->doesnthave('berkas')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
