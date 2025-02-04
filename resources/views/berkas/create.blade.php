@@ -75,11 +75,11 @@
                                 <input type="file" name="file_skp" id="file_skp" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="file_tpp" class="form-label">File TPP</label>
+                                <label for="file_tpp" class="form-label">File Tanda Terima TPP</label>
                                 <input type="file" name="file_tpp" id="file_tpp" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="file_dhbpo" class="form-label">File DHBPO</label>
+                                <label for="file_dhbpo" class="form-label">File Daftar Hadir</label>
                                 <input type="file" name="file_dhbpo" id="file_dhbpo" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">

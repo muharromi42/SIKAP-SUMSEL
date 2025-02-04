@@ -56,11 +56,11 @@
             </a>
             <a href="{{ asset('storage/' . $upload->file_tpp) }}" target="_blank"
                 class="list-group-item list-group-item-action">
-                TPP
+                Tanda Terima TPP
             </a>
             <a href="{{ asset('storage/' . $upload->file_dhbpo) }}" target="_blank"
                 class="list-group-item list-group-item-action">
-                DHBPO
+                Daftar Hadir
             </a>
             <a href="{{ asset('storage/' . $upload->file_ekinerja) }}" target="_blank"
                 class="list-group-item list-group-item-action">

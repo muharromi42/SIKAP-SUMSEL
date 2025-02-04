@@ -178,7 +178,15 @@ class BerkasController extends Controller
             'Prabumulih',
         ];
 
-        return view('berkas.edit', compact('berkas', 'kabupatenOptions'));
+        $namafile = [
+            'SPTJM',
+            'SKP',
+            'Tanda Terima TPP',
+            'Daftar Hadir',
+            'E-Kinerja',
+        ];
+
+        return view('berkas.edit', compact('berkas', 'kabupatenOptions', 'namafile'));
     }
 
     public function update(Request $request, $id)

@@ -74,10 +74,10 @@
                             </div>
 
                             <!-- Menampilkan File Lama -->
-                            @foreach (['sptjm', 'skp', 'tpp', 'dhbpo', 'ekinerja'] as $file)
+                            @foreach (['sptjm', 'skp', 'tpp', 'dhbpo', 'ekinerja'] as $index => $file)
                                 <div class="form-group mb-3">
                                     <label for="file_{{ $file }}" class="form-label">File
-                                        {{ strtoupper($file) }}</label>
+                                        {{ $namafile[$index] }}</label>
                                     @if ($berkas->{'file_' . $file})
                                         <p>File Lama: <a href="{{ asset('storage/' . $berkas->{'file_' . $file}) }}"
                                                 target="_blank">Lihat File Lama</a></p>

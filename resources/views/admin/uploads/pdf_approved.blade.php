@@ -78,8 +78,8 @@
                     <th>Instansi</th>
                     <th>SPTJM</th>
                     <th>SKP</th>
-                    <th>TPP</th>
-                    <th>DHBPO</th>
+                    <th>Tanda Terima TPP</th>
+                    <th>Daftar Hadir</th>
                     <th>E-KINERJA</th>
                     <th>Bulan</th>
                     <th>Tahun</th>
